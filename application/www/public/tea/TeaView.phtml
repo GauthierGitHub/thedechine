@@ -4,14 +4,14 @@
 
     <section class="product col-lg-4 col-md-6 col-sm-12 ">
         <h3 class="name<?=$product['id']?>"><?=$product['name']?></h3>
-        <img class="img-responsive<?=$product['id']?>" src="<?= $wwwUrl ?>/images/teapic/<?=$product['image']?>" width="100px">
-        <p class="price<?=$product['id']?>"><?=$product['price']/10?>€ les 100g.</p>
+        <img class="img-responsive<?=$product['id']?>" src="<?= $wwwUrl ?>/images/teapic/<?=$product['image']?>" alt="<?$product['name']?>">
+        <p class="price<?=$product['id']?>"><?=$product['price']?>€ les 100g.</p>
         <p><?=$product['description']?></p>
 
         <div class="control">  
             <input class='less' productid='<?=$product['id']?>' type="button" value="-">
-            <input class="quantity" productIdQte="<?=$product['id']?>" type="number" name="qty" maxlength="12" title="Qté" class="input-text qty" min='-1'readonly="readonly">
-            <input class='more' productid='<?=$product['id']?>'type="button" value="+">
+            <input class="quantity input-text qty" productIdQte="<?=$product['id']?>" type="number" name="qty"  title="Qté"  min="-1" readonly="readonly">
+            <input class='more' productid='<?=$product['id']?>' type="button" value="+">
         </div>            
 
         <a class="addProductToCart" href="#none" productid="<?=$product['id']?>">Ajouter ce produit à mon panier<i class="fa fa-shopping-cart"></i>&nbsp;</a>
