@@ -1,0 +1,62 @@
+<h3>Éditer un produit</h3>
+
+<p>Produit n°<?= $productData['id'] ?></p>
+
+<form action="<?= $requestUrl; ?>/admin/editproduct" method="post">
+
+    <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
+    <p class="hidden">
+        <label for="id">id</label><br>
+        <input type="text" name="id" value="<?= $productData['id'] ?>">
+    </p>
+    <p>
+        <label for="name">Nom</label><br>
+        <input type="text" name="name" value="<?= $productData['name'] ?>">
+    </p>
+    <p>
+        <label for="category_id">Catégorie :</label><br>
+        <select name="category_id">
+            <?php foreach ($categories as $category) : ?>
+                <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+            <?php endforeach; ?>
+        </select>
+    </p>
+    <p>
+        <label for="description">Description</label><br>
+        <input type="text" name="description" value="<?= $productData['description'] ?>"></textarea>
+    </p>
+    <p>
+        <label for="image">Nom de l'actuelle image : <?= $productData['image'] ?></label><br>
+        <input type="hidden" type="text" name="image" value="<?= $productData['image'] ?>">
+    </p>
+    <p>
+        <label for="stock">Quantité en stock</label><br>
+        <input type="number" name="stock" value="<?= $productData['stock'] ?>">
+    </p>
+    <p>
+        <label for="price">Prix/kg en euros ou prix unitaire</label><br>
+        <input type="number" name="price" value="<?= $productData['price'] ?>">
+    </p>
+    <input type="submit" value="Enregistrer">
+
+</form>
+<br>
+<br>
+
+<h3>Remplacer l'image du produit</h3>
+
+<form class="cabinet" method="POST" action="upload" enctype="multipart/form-data">
+
+    <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
+    <p class="hidden">
+        <label for="id">id</label><br>
+        <input type="text" name="id" value="<?= $productData['id'] ?>">
+    </p>
+    <!-- On limite le fichier à 10000000 = 10MB-->
+    <input type="hidden" name="MAX_FILE_SIZE" value="10000000">
+    Fichier image limité à 10MB:
+    <br>
+    <input type="file" name="photoToUpload">
+    <input type="submit" name="envoyer" value="Envoyer le fichier">
+
+</form>

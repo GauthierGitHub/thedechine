@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Thés de Chine</title>
+  <!-- Logo -->
+  <link rel="icon" href="<?= $wwwUrl ?>/images/logo.png" />
+  <!-- Feuilles de styles -->
+  <link rel="stylesheet" href="<?= $wwwUrl ?>/css/normalize-3.0.3.min.css">
+  <link rel="stylesheet" href="<?= $wwwUrl ?>/css/font-awesome-4.3.0.min.css">
+  <!-- Feuilles de styles de l'application -->
+  <link rel="stylesheet" href="<?= $wwwUrl ?>/css/thedechine.css">
+  <!-- Font google -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+  <!-- Librairie jQuery -->
+  <script src="<?= $wwwUrl ?>/js/jquery-3.3.1.min.js"></script>
+  <!-- Bootsrap (modified)-->
+  <link rel="stylesheet" href="<?= $wwwUrl ?>/css/bootstrap.css">
+  <script src="<?= $wwwUrl ?>/js/bootstrap.js"></script>
+  <!-- JavaScript de l'application -->
+  <script src="<?= $wwwUrl ?>/js/utilities.js"></script>
+</head>
+
+<body>
+
+  <!-- En-tête commune -->
+  <header>
+    <p id="userMenu">
+      <a href="#"><i class="fa fa-user"></i>&nbsp;<?= $_SESSION['customer_nickname'] ?></a>
+      <a class="disconnection" href="<?= $requestUrl ?>/customer/disconnection">
+        <i class="fa fa-user-times"></i>&nbsp;déconnexion
+      </a>
+    </p>
+
+    <div id="banner" class="row">
+      <a href="<?= $requestUrl ?>">
+        <img class="col-sd-12" src="<?= $wwwUrl ?>/images/thecalygraphie2.jpg" width="100px" alt="#">
+        <h1 class="col-sd-12">
+          Thés de Chine
+        </h1>
+      </a>
+    </div>
+
+    <nav id="navbar" class=" topscroll navbar navbar-expand-md navbar-light bg-light user-interface">
+      <a class="navbar-brand" href="<?= $requestUrl ?>/admin"><img src="<?= $wwwUrl ?>/images/logo.png" height="63" width="57" alt="Idées de Chine"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample05">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="<?= $requestUrl  ?>/admin">Administration du site <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="<?= $requestUrl  ?>/admin/listingproducts" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produits</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown05">
+              <a class="dropdown-item" href="<?= $requestUrl  ?>/admin/listingproducts">Liste / Édition</a>
+              <a class="dropdown-item" href="<?= $requestUrl  ?>/admin/addproduct">Ajout</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="<?= $requestUrl  ?>/admin/listingorders" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Commandes</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown05">
+              <a class="dropdown-item" href="<?= $requestUrl  ?>/admin/listingorders">Liste / Édition</a>
+              <a class="dropdown-item" href="<?= $requestUrl  ?>/admin/addorder">Ajout</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="<?= $requestUrl  ?>/admin/listingcustomers" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Clients</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown05">
+              <a class="dropdown-item" href="<?= $requestUrl  ?>/admin/listingcustomers">Liste / Édition</a>
+              <a class="dropdown-item" href="<?= $requestUrl  ?>/admin/addcustomer">Ajout</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= $requestUrl ?>">Partie publique</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+  </header>
+
+  <!-- token antifaille csrf-->
+  <?php
+  if (!isset($_SESSION['jeton'])) {
+    $_SESSION['jeton'] = bin2hex(openssl_random_pseudo_bytes(6));
+  }
+  ?>
+
+  <!-- Message flashBag-->
+  <?php
+  if ($flashBag->hasMessages()) :
+    foreach ($flashBag->fetchMessages() as $message) :
+      ?>
+      <p>
+
+        <?= $message; ?>
+
+      </p>
+    <?php
+  endforeach;
+endif;
+?>
+
+
+  <main>
+    <!-- Affichage du template lié à la vue -->
+    <?php include $this->viewData['template'] ?>
+  </main>
+
+  <!-- Code principal JavaScript de l'application -->
+  <script src="<?= $wwwUrl ?>/js/main.js"></script>
+  <?php if (isset($is_order)) : ?>
+    <script src="<?= $wwwUrl ?>/js/order.js"></script>
+  <?php endif; ?>
+  <?php if (isset($is_addOrder)) : ?>
+    <script src="<?= $wwwUrl ?>/js/addOrder.js"></script>
+  <?php endif; ?>
+
+</body>
+
+</html>

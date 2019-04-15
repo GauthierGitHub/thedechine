@@ -1,0 +1,26 @@
+<h3>Ajouter une commande</h3>
+
+<form action="addorder" method="post" enctype="multipart/form-data">
+
+    <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
+    <p>
+        <label for="customer_id">Nom du client :</label><br>
+        <select name="customer_id">
+            <?php foreach ($dataCustomers as $customer) : ?>
+                <option value="<?= $customer['id'] ?>"><?= $customer['firstname'] ?> <?= $customer['lastname'] ?></option>
+            <?php endforeach; ?>
+        </select>
+    </p>
+    <!-- Partie généré en php, géré en js -->
+    <p>
+        <label for="product">Produit :</label><br>
+        <?php foreach ($dataProducts as $product) : ?>
+            <input class="checkbox" type="checkbox" name="product[]" value="<?= $product['id'] ?>"> <?= $product['name'] ?><br>
+            <p>Quantité</p>
+            <input class="togglePost" disabled="disabled" type="number" name="product[]"><br>
+            </fieldset>
+        <?php endforeach; ?>
+    </p>
+    <input type="submit" value="Enregistrer">
+
+</form>

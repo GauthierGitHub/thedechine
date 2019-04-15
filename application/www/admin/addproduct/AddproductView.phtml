@@ -1,0 +1,44 @@
+<h3>Ajouter un produit</h3>
+
+<form action="addproduct" method="post" enctype="multipart/form-data">
+
+    <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
+
+    <p>
+        <label for="name">Nom</label><br>
+        <input type="text" name="name">
+    </p>
+
+    <p>
+        <label for="category">Catégorie :</label><br>
+        <select name="category">
+            <?php foreach ($category_name as $category) : ?>
+                <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+            <?php endforeach; ?>
+        </select>
+    </p>
+
+    <p>
+        <label for="description">Description</label><br>
+        <textarea name="description"></textarea>
+    </p>
+
+    <p>
+        <input type="hidden" name="MAX_FILE_SIZE" value="10000000">
+        Fichier image limité 10MB: <input type="file" name="photoToUpload">
+    </p>
+
+    <p>
+        <label for="stock">Nombre en stock</label><br>
+        <input type="number" name="stock">
+    </p>
+
+    <p>
+        <label for="price">Prix/kg en euros</label><br>
+        <input type="number" name="price">
+    </p>
+
+    <input type="submit" value="Enregistrer">
+
+</form>
+<br>

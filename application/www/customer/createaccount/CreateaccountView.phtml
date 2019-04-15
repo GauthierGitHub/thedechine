@@ -1,0 +1,39 @@
+<h3 class="col-12">Inscrivez-vous :</h3>
+<br>
+<br>
+<br>
+<form class="col-12" action="<?= $requestUrl ?>/customer/newcustomer" method="post">
+    <p>
+        <label for="lastname">Nom</label><br>
+        <input type="text" name="lastname">
+    </p>
+    <p>
+        <label for="firstname">Prénom</label><br>
+        <input type="text" name="firstname">
+    </p>
+    <p>
+        <label for="mail">Mail</label><br>
+        <input type="email" name="mail">
+    </p>
+    <p>
+        <label for="nickname">Pseudo</label><br>
+        <input type="text" name="nickname">
+    </p>
+    <p>
+        <label for="password">Mot de passe</label><br>
+        <input type="text" name="password">
+    </p>
+    <p>
+        <label for="adress">Adresse</label><br>
+        <textarea name="adress"></textarea>
+    </p>
+    <p>
+        <label for="cp">Code postal</label><br>
+        <input type="number" name="cp">
+    </p>
+    <p>
+        <label for="city">Ville</label><br>
+        <input type="text" name="city">
+    </p>
+    <input type="submit" value="Enregistrer">
+</form>
