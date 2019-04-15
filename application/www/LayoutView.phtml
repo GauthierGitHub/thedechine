@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Thés de Chine</title>
+  <!-- Logo -->
+  <link rel="icon" href="<?= $wwwUrl ?>/images/logo.png" />
+  <!-- Feuilles de styles -->
+  <link rel="stylesheet" href="<?= $wwwUrl ?>/css/normalize-3.0.3.min.css">
+  <link rel="stylesheet" href="<?= $wwwUrl ?>/css/font-awesome-4.3.0.min.css">
+  <!-- Feuilles de styles de l'application -->
+  <link rel="stylesheet" href="<?= $wwwUrl ?>/css/thedechine.css">
+  <!-- flexSlider -->
+  <link rel="stylesheet" href="<?= $wwwUrl ?>/css/flexslider.css" type="text/css">
+  <!-- Font google -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+  <!-- Bootstrap (modified)-->
+  <link rel="stylesheet" href="<?= $wwwUrl ?>/css/bootstrap.css">
+</head>
+
+<body>
+  <!-- En-tête commune -->
+  <header>
+    <p id="userMenu">
+
+      <?php if (isset($_SESSION['customer_nickname']) && $_SESSION['customer_id'] == 9) : ?>
+
+        <a href="<?= $requestUrl ?>/admin">Bienvenue <?= $_SESSION['customer_nickname'] ?>, cliquez ici pour gérer le site.
+        </a>
+
+        <a class="disconnection" href="<?= $requestUrl ?>/customer/disconnection">
+          <i class="fa fa-user-times"></i>&nbsp;déconnexion
+        </a>
+
+      <?php else : ?>
+        <a href="<?= $requestUrl ?>/customer">
+
+          <i class="fa fa-user"></i>&nbsp;
+
+          <?php if (isset($_SESSION['customer_nickname'])) : ?>
+            <?= $_SESSION['customer_nickname'] ?>
+          <?php else : ?>
+            <?= 'Connectez-vous!' ?>
+          <?php endif; ?>
+
+          <?php if (isset($_SESSION['customer_nickname'])) : ?>
+
+            <a class="disconnection" href="<?= $requestUrl ?>/customer/disconnection">
+              <i class="fa fa-user-times"></i>&nbsp;déconnexion
+            </a>
+
+          <?php endif; ?>
+
+        <?php endif; ?>
+
+        <a class="cartButton" href="#nothing">
+          <i class="fa fa-shopping-cart"></i>&nbsp;<span id="ordercount"></span>Mon panier
+        </a>
+
+
+    </p>
+
+    <br>
+
+    <div id="banner" class="row">
+      <a href="<?= $requestUrl ?>">
+        <img class="col-sd-12" src="<?= $wwwUrl ?>/images/thecalygraphie2.jpg" width="100px" alt="#">
+        <h1 class="col-sd-12">
+          Thés de Chine
+        </h1>
+      </a>
+    </div>
+
+    <nav id="navbar" class=" topscroll navbar navbar-expand-md navbar-light bg-light user-interface">
+
+      <a class="navbar-brand" href="<?= $requestUrl ?>">
+        <img src="<?= $wwwUrl ?>/images/logo.png" height="63" width="57" alt="Idées de Chine">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample05">
+
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="<?= $requestUrl ?>">Accueil <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= $requestUrl ?>/public/tea">Thés</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= $requestUrl ?>/public/accessories">Accessoires</a>
+          </li>
+        </ul>
+
+      </div>
+    </nav>
+
+  </header>
+
+
+  <!-- token anti faille csrf-->
+  <?php
+  if (!isset($_SESSION['jeton'])) {
+    $_SESSION['jeton'] = bin2hex(openssl_random_pseudo_bytes(6));
+  }
+  ?>
+
+  <!-- Message flashBag-->
+  <?php
+  if ($flashBag->hasMessages()) :
+    foreach ($flashBag->fetchMessages() as $message) :
+      ?>
+      <p class="flashBag">
+
+        <?= $message; ?>
+
+      </p>
+    <?php
+  endforeach;
+endif;
+?>
+
+  <!-- Panier -->
+  <div id="cart">
+    <h4 class="monPanier">Mon panier</h4>
+    <p>Livraison offerte en France dès 50€ d’achat</p>
+
+    <section id="order">
+      <!-- Here orderlist -->
+      <ul id="orderlist"></ul>
+    </section>
+
+    <p id="total"></p>
+
+    <form class="toOrder" action="<?= $requestUrl ?>/order/payment" class="col-12">
+      <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
+      <button class="submit" type=button><i class="fa fa-shopping-cart"></i>&nbsp;Je commande !</button>
+    </form>
+
+  </div>
+
+  <noscript>
+    <p>
+      Javascript est désactivé dans votre navigateur.
+      Pour une meilleure expérience sur notre site, assurez-vous d’activer JavaScript dans votre navigateur.
+    </p>
+  </noscript>
+
+  <main class="row">
+    <!-- Affichage du template lié à la vue -->
+    <?php include $this->viewData['template'] ?>
+  </main>
+
+  <!-- Pied de page commun -->
+  <footer id="footer">
+    <ul class="link-list">
+      <li><img src="<?= $wwwUrl ?>/images/payment/visa.png" alt="Visa"></li>
+      <li><img src="<?= $wwwUrl ?>/images/payment/mastercard.png" alt="MasterCard"></li>
+      <li><img src="<?= $wwwUrl ?>/images/payment/paypal.png" alt="PayPal"></li>
+    </ul>
+    <small>Réalisé avec <i class="fa fa-heart"></i>&nbsp; par Gauthier Barbet.</small>
+  </footer>
+
+
+  <!-- Librairie jQuery -->
+  <script src="<?= $wwwUrl ?>/js/jquery-3.3.1.min.js"></script>
+  <!-- Code principal JavaScript de l'application -->
+  <script src="<?= $wwwUrl ?>/js/bootstrap.js"></script>
+  <!-- JavaScript de l'application -->
+  <script src="<?= $wwwUrl ?>/js/cart.class.js"></script>
+  <script src="<?= $wwwUrl ?>/js/cartManager.js"></script>
+  <?php if (isset($is_products)) : ?>
+    <script src="<?= $wwwUrl ?>/js/product.js"></script>
+  <?php endif; ?>
+  <?php if (isset($is_home)) : ?>
+    <script src="<?= $wwwUrl ?>/js/jquery.flexslider-min.js"></script>
+    <script>
+      $(window).on('load', function() {
+        $('.flexslider').flexslider({
+          directionNav: true,
+          controlNav: true
+        });
+      });
+    </script>
+  <?php endif; ?>
+  <!-- JavaScript principal -->
+  <script src="<?= $wwwUrl ?>/js/main.js"></script>
+</body>
+
+</html>

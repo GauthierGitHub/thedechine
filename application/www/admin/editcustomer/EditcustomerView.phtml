@@ -1,0 +1,56 @@
+<h3>Editer un client</h3>
+
+<p>Client n°<?= $customerData['id'] ?></p>
+
+<form action="<?= $requestUrl; ?>/admin/editcustomer" method="post">
+
+    <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
+    <p class="hidden">
+        <label for="id">id</label><br>
+        <input type="text" name="id" value="<?= $customerData['id'] ?>">
+    </p>
+    <p>
+        <label for="lastname">Nom</label><br>
+        <input type="text" name="lastname" value="<?= $customerData['lastname'] ?>">
+    </p>
+    <p>
+        <label for="firstname">Prénom</label><br>
+        <input type="text" name="firstname" value="<?= $customerData['firstname'] ?>">
+    </p>
+    <p>
+        <label for="mail">Mail</label><br>
+        <input type="email" name="mail" value="<?= $customerData['mail'] ?>">
+    </p>
+    <p>
+        <label for="nickname">Pseudo</label><br>
+        <input type="text" name="nickname" value="<?= $customerData['nickname'] ?>">
+    </p>
+    <p>
+        <label for="adress">Adresse</label><br>
+        <input type="text" name="adress" value="<?= $customerData['adress'] ?>"></textarea>
+    </p>
+    <p>
+        <label for="cp">Code postal</label><br>
+        <input type="number" name="cp" value="<?= $customerData['cp'] ?>">
+    </p>
+    <p>
+        <label for="city">Ville</label><br>
+        <input type="text" name="city" value="<?= $customerData['city'] ?>">
+    </p>
+    <input type="submit" value="Enregistrer">
+</form>
+<br>
+<h4>Changer le mot de passe</h4>
+<form action="<?= $requestUrl; ?>/admin/editcustomer" method="post">
+
+    <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
+    <p class="hidden">
+        <label for="id">id</label><br>
+        <input type="text" name="id" value="<?= $customerData['id'] ?>">
+    </p>
+    <p>
+        <label for="password">Mot de passe</label><br>
+        <input type="text" name="password">
+    </p>
+    <input type="submit" value="Enregistrer">
+</form>

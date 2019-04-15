@@ -1,0 +1,41 @@
+<h2 class="col-12"><i class="fa fa-check"></i> Payer la commande</h2>
+<br>
+<p class="col-12">Récapitulatif de votre commande :</p>
+
+<table class="generic-table meal-list">
+  <thead>
+    <tr>
+      <td>Nom</td>
+      <td>Prix unitaire</td>
+      <td>Quantité</td>
+      <td>Sous-total</td>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($products as $product) : ?>
+      <tr>
+        <td><?= $product['name'] ?></td>
+        <td><?= $product['price'] ?>€</td>
+        <td><?= $quantity[$product['id']] ?></td>
+        <td class="subtotal"><?= $product['price'] * $quantity[$product['id']] ?>€</td>
+      </tr>
+    <?php endforeach; ?>
+  </tbody>
+</table>
+
+<p class="col-12 total">Total de la commande :
+  <span id="totalOrder"><?= $total / 100 ?> €</span>
+</p>
+
+
+<?php if (isset($_SESSION['customer_mail'])) : ?>
+  <form id="stripeButton" action="<?= $requestUrl ?>/order/payment" method="POST">
+    <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
+    <input type="hidden" name="total" value="<?= $total ?>" />
+
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_aPwxy7NiIZinXuJEOsOgJJhf" data-amount="<?= $total ?>" data-email="<?= $_SESSION['customer_mail'] ?>" data-label="Payer en CB" data-name="Thé de Chine" data-description="Widget" data-image="<?= $wwwUrl ?>/images/logo.png" data-locale="auto" data-currency="eur">
+    </script>
+  </form>
+<?php else : ?>
+  <a class="col-12 signUp" href="<?= $requestUrl ?>/customer">Connectez-vous ou inscrivez-vous pour commander !</a>
+<?php endif; ?>

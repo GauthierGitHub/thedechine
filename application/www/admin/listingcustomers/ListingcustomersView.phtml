@@ -1,0 +1,21 @@
+<h2>Liste des clients</h2>
+<br>
+<?php foreach ($customerModel as $customer) : ?>
+    <div class="meal-list">
+        <p><?= $customer['firstname'] ?> <?= $customer['lastname'] ?></p>
+        <ul>
+            <li><?= $customer['adress'] ?></li>
+            <li><?= $customer['cp'] ?></li>
+            <li><?= $customer['city'] ?></li>
+        </ul>
+        <a href="<?= $requestUrl; ?>/admin/editcustomer?customerid=<?= $customer['id'] . "&jeton=" . $_SESSION['jeton']; ?>" class="white">Éditer ce client</a>
+        <form action="<?= $requestUrl; ?>/admin/listingcustomers" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce client ?');">
+            <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
+            <input type="text" class="hidden" name="customerid" value="<?= $customer['id'] ?>">
+            <input class="deletebutton" type="submit" value="Supprimer ce client">
+        </form>
+        <br>
+    </div>
+    <br>
+
+<?php endforeach; ?>

@@ -1,0 +1,72 @@
+<h2>Éditer une commande</h2>
+
+<h3>Commande n°<?= $orderData['order_id'] ?></h3>
+<br>
+<h4>Récapitulatif de la commande</h4>
+
+<ul>Client :
+    <li><?= $orderData['lastname'] ?> <?= $orderData['firstname'] ?></li>
+    <li><?= $orderData['adress'] ?></li>
+    <li><?= $orderData['cp'] ?></li>
+    <li><?= $orderData['city'] ?></li>
+</ul>
+<table class="generic-table meal-list">
+    <thead>
+        <tr>
+            <td>Produit</td>
+            <td>Quantité</td>
+            <td>Prix unitaire</td>
+            <td>Sous total</td>
+        </tr>
+    </thead>
+    <tbody>
+        <?php for ($i = 0; $i < count($orderData['product_name']); $i++) : ?>
+            <tr>
+                <td><?= $orderData['product_name'][$i] ?></td>
+                <td><?= $orderData['price'][$i] ?></td>
+                <td><?= $orderData['quantity'][$i] ?></td>
+                <td><?= $orderData['soustotal'][$i] ?></td>
+            </tr>
+        <?php endfor; ?>
+    </tbody>
+</table>
+<br>
+
+<form id="form" action="editorder" method="post">
+
+    <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
+    <p class="hidden">
+        <label for="id">id</label><br>
+        <input type="text" name="id" value="<?= $orderData['order_id'] ?>">
+    </p>
+
+    <p>
+        <label for="customer_id">Nom du client :</label><br>
+        <select name="customer_id" value="<?= $orderData['customer_id'] ?>">
+
+            <?php foreach ($dataCustomers as $customer) : ?>
+
+                <option value="<?= $customer['id'] ?>"><?= $customer['firstname'] ?> <?= $customer['lastname'] ?></option>
+
+            <?php endforeach; ?>
+
+        </select>
+    </p>
+
+
+    <!-- Partie générée en php, géré en js -->
+    <p>
+        <label for="product">Produit :</label><br>
+
+        <?php foreach ($dataProducts as $product) : ?>
+
+            <input class="checkbox inputTodelete" type="checkbox" name="product[]" value="<?= $product['id'] ?>"> <?= $product['name'] ?><br>
+            <p>Quantité</p>
+            <input class="togglePost inputTodelete" disabled="disabled" type="number" name="product[]" value=""><br>
+
+        <?php endforeach; ?>
+    </p>
+
+    <input type="submit" value="Enregistrer">
+
+</form>
