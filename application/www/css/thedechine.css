@@ -99,6 +99,7 @@
  .product img{
      text-align: center;
      margin: 0 auto;
+     width: 100px;
 }
 
 /*
@@ -128,6 +129,9 @@
  }
  #banner a  h1, img{
      display: inline;
+ }
+ #banner img{
+     width: 100px;
  }
  h1{
      color: white;
@@ -191,7 +195,7 @@
  .submit:hover{
     background-color: rgb(36, 201, 115);
  }
- #total{
+ #cart > p{
     color: white;
     text-align: center;
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
   <meta charset="utf-8">
@@ -27,37 +27,40 @@
 
       <?php if (isset($_SESSION['customer_nickname']) && $_SESSION['customer_id'] == 9) : ?>
 
-        <a href="<?= $requestUrl ?>/admin">Bienvenue <?= $_SESSION['customer_nickname'] ?>, cliquez ici pour gérer le site.
-        </a>
+      <a href="<?= $requestUrl ?>/admin">Bienvenue <?= $_SESSION['customer_nickname'] ?>, cliquez ici pour gérer le site.
+      </a>
 
-        <a class="disconnection" href="<?= $requestUrl ?>/customer/disconnection">
-          <i class="fa fa-user-times"></i>&nbsp;déconnexion
-        </a>
+      <a class="disconnection" href="<?= $requestUrl ?>/customer/disconnection">
+        <i class="fa fa-user-times"></i>&nbsp;déconnexion
+      </a>
 
       <?php else : ?>
-        <a href="<?= $requestUrl ?>/customer">
 
-          <i class="fa fa-user"></i>&nbsp;
+      <a href="<?= $requestUrl ?>/customer">
 
-          <?php if (isset($_SESSION['customer_nickname'])) : ?>
-            <?= $_SESSION['customer_nickname'] ?>
+        <i class="fa fa-user"></i>&nbsp;
+
+        <?php if (isset($_SESSION['customer_nickname'])) : ?>
+          <?= $_SESSION['customer_nickname'] ?>
           <?php else : ?>
             <?= 'Connectez-vous!' ?>
           <?php endif; ?>
 
-          <?php if (isset($_SESSION['customer_nickname'])) : ?>
+      </a>
 
-            <a class="disconnection" href="<?= $requestUrl ?>/customer/disconnection">
-              <i class="fa fa-user-times"></i>&nbsp;déconnexion
-            </a>
+      <?php if (isset($_SESSION['customer_nickname'])) : ?>
 
-          <?php endif; ?>
+      <a class="disconnection" href="<?= $requestUrl ?>/customer/disconnection">
+            <i class="fa fa-user-times"></i>&nbsp;déconnexion
+      </a>
 
         <?php endif; ?>
 
-        <a class="cartButton" href="#nothing">
-          <i class="fa fa-shopping-cart"></i>&nbsp;<span id="ordercount"></span>Mon panier
-        </a>
+      <?php endif; ?>
+
+      <a class="cartButton" href="#nothing">
+        <i class="fa fa-shopping-cart"></i>&nbsp;<span id="ordercount"></span>Mon panier
+      </a>
 
 
     </p>
@@ -66,7 +69,7 @@
 
     <div id="banner" class="row">
       <a href="<?= $requestUrl ?>">
-        <img class="col-sd-12" src="<?= $wwwUrl ?>/images/thecalygraphie2.jpg" width="100px" alt="#">
+        <img class="col-sd-12" src="<?= $wwwUrl ?>/images/thecalygraphie2.jpg"  alt="#">
         <h1 class="col-sd-12">
           Thés de Chine
         </h1>
@@ -128,19 +131,21 @@ endif;
   <!-- Panier -->
   <div id="cart">
     <h4 class="monPanier">Mon panier</h4>
-    <p>Livraison offerte en France dès 50€ d’achat</p>
+    
 
     <section id="order">
       <!-- Here orderlist -->
       <ul id="orderlist"></ul>
     </section>
 
-    <p id="total"></p>
+    <p></p>
 
-    <form class="toOrder" action="<?= $requestUrl ?>/order/payment" class="col-12">
+    <form class="toOrder col-12" action="<?= $requestUrl ?>/order/payment">
       <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
       <button class="submit" type=button><i class="fa fa-shopping-cart"></i>&nbsp;Je commande !</button>
     </form>
+
+    <p>Livraison offerte en France dès 50€ d’achat</p>
 
   </div>
 

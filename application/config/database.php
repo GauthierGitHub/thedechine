@@ -5,5 +5,5 @@
  */
 
 $config['dsn']      = 'mysql:host=localhost;dbname=thedechine';
-$config['password'] = 'Capablanca_264315';
-$config['user']     = 'admin';
+$config['password'] = 'gogo4everGo_Go';
+$config['user']     = 'gogo';
