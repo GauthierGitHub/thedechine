@@ -73,7 +73,7 @@ function writeCart() {
                         + '<p class="quantity" title="' + index[i] + '">Quantité (lot de 100g) : ' + cart.cartListQte[index[i]] + '</p>'
                         + '<p class="product_price">Prix : ' + cart.products_prices[index[i]] + '</p>'
                         + '<p class="under_total">Sous-total : ' + cart.cartListQte[index[i]] * parseInt(cart.products_prices[index[i]]) + '€</p>'
-                        + '<a class="delete" name="' + index[i] + '" href="#none">Supprimer cet article</a>'
+                        + '<a class="delete" name="' + index[i] + '" href="#none">Retirer cet article</a>'
                         + '<hr>'
                         +
                         '</li>')
