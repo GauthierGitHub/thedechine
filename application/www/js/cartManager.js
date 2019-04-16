@@ -18,7 +18,7 @@ function addProductToCart(event) {
         cart.img_url = curentCart.img_url;
     }
     //récupération des nouvelles données à enregistrer
-    var id = $(this).attr('name');
+    var id = $(this).attr('id');
     var quantity = $("[title=" + id + "]").val();
     var name = $(".name" + id).text();
     var price = $(".price" + id).text();
