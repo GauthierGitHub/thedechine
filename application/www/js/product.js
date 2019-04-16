@@ -34,8 +34,6 @@ function more() {
     quantity = parseInt(quantity) + 1;
     //écriture de la nouvelle quantité
     $("[title=" + id + "]").val(quantity);
-    //inscription du nouveau panier
-    /*addProductToCart();*/
 }
 function less() {
     //récupération de l'id du produit
@@ -48,6 +46,4 @@ function less() {
     //écriture de la nouvelle quantité
     quantity = parseInt(quantity) - 1;
     $("[title=" + id + "]").val(quantity);
-    //inscription du nouveau panier
-    /*addProductToCart();*/
 }
