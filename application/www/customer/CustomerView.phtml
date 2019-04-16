@@ -1,4 +1,4 @@
-<section class="slider col-lg-6 col-md-6 col-sd-12">
+<section id="connexion" class="col-lg-6 col-md-6 col-sd-12">
 
     <form action="<?= $requestUrl ?>/customer/connection" method="post" novalidate="novalidate">
         <fieldset>
@@ -7,11 +7,11 @@
             <br>
 
             <label for="email">Email</label>
-            <input name="login[usermail]" value="" autocomplete="off" type="email" class="input-text" title="Email" data-validate="{'validate-email':true}">
+            <input id="email" name="login[usermail]" value="" autocomplete="off" type="email" class="input-text" title="Email" data-validate="{'validate-email':true}">
             <br>
 
             <label for="pass">Mot de passe</label>
-            <input name="login[password]" type="password" autocomplete="off" class="input-text" id="pass" title="Mot de passe">
+            <input  id="pass" name="login[password]" type="password" autocomplete="off" class="input-text" id="pass" title="Mot de passe">
             <br>
 
             <button type="submit">Se connecter</button>
@@ -26,7 +26,7 @@
 
 </section>
 
-<section class="slider col-lg-6 col-md-6 col-sd-12">
+<section id="inscription" class="col-lg-6 col-md-6 col-sd-12">
 
     <h3>Nouveau client ?</h3>
     <!--
