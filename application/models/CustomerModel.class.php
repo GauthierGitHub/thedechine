@@ -58,7 +58,7 @@ class CustomerModel
     ]);
   }
 
-  // Méthode pour voir si un mail exite déjà
+  // Méthode pour voir si un mail existe déjà
   public function mailVerify($customerMail)
   {
     $database = new Database();
