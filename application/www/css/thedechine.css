@@ -106,7 +106,6 @@
 *pageS public orders
  */
  .total{
- 
      padding-top: 1em;
  }
  #totalOrder{
@@ -115,6 +114,19 @@
  .signUp{
      text-align: center;
 } 
+
+/*
+*pageS public customers
+ */
+ #inscription{
+     text-align: center;
+ }
+ #connexion input{
+     width: 60%;
+ }
+ #connexion form{
+     text-align: right;
+}
 
 /*
 * header
@@ -195,7 +207,7 @@
  .submit:hover{
     background-color: rgb(36, 201, 115);
  }
- #cart > p{
+ #cart > p, #total{
     color: white;
     text-align: center;
 }
