@@ -122,10 +122,7 @@
      text-align: center;
  }
  #connexion input{
-     width: 60%;
- }
- #connexion form{
-     text-align: right;
+     width: 100%;
 }
 
 /*
