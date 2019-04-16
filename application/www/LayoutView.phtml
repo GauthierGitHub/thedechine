@@ -133,19 +133,17 @@ endif;
     <h4 class="monPanier">Mon panier</h4>
     
 
-    <section id="order">
+    <div id="order">
       <!-- Here orderlist -->
       <ul id="orderlist"></ul>
-    </section>
-
-    <p></p>
+    </div>
 
     <form class="toOrder col-12" action="<?= $requestUrl ?>/order/payment">
       <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
       <button class="submit" type=button><i class="fa fa-shopping-cart"></i>&nbsp;Je commande !</button>
     </form>
 
-    <p>Livraison offerte en France dès 50€ d’achat</p>
+    <p>Le site est encore en développement, toute commande sera fictive.</p>
 
   </div>
 
