@@ -126,7 +126,7 @@
 }
 
 /*
-* header
+* banner
  */
  #banner{
      background: linear-gradient(to right, rgba(51, 153, 102, 1), rgba(248, 249, 250, 0.5)), url("../images/tea-1283900_1920.jpg") no-repeat fixed;
@@ -231,7 +231,7 @@
 }
 
 /*
-*NAVBAR
+*NAVBARs
  */
  #userMenu{
      position: fixed;
@@ -242,6 +242,17 @@
      text-align: right;
      max-width: 1200px;
      z-index: 111;
+ }
+ @media screen and (max-width: 768px) {
+    #monPanier {
+      display: none;
+   }
+   #userMenu{
+       text-align: center;
+   }
+   .cartButton{
+    font-size: 120%;
+   }
  }
  #ordercount{
     vertical-align:super;
