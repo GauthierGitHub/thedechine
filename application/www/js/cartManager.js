@@ -20,6 +20,9 @@ function addProductToCart(event) {
     //récupération des nouvelles données à enregistrer
     var id = $(this).attr('id');
     var quantity = $("[title=" + id + "]").val();
+    //nécessaire pour corriger un bug : .val() remet l'input en string
+    quantity = parseInt(quantity);
+    $("[title=" + id + "]").val(quantity);
     var name = $(".name" + id).text();
     var price = $(".price" + id).text();
     var img = $(".img-responsive" + id).attr("src");
@@ -35,16 +38,17 @@ function addProductToCart(event) {
         writeCart();
     }
     //cas de remise à zéro
-    if (quantity == 0) {
+    else if (quantity == 0) {
         cart.deleteProduct(id);
         //écrasement des données dans le local
         localStorage.setItem('panier', JSON.stringify(cart));
         //écriture du nouveau panier
         writeCart();
     }
-    //nécessaire pour corriger un bug : .val() remet l'input en string
-    quantity = parseInt(quantity);
-    $("[title=" + id + "]").val(quantity);
+    //corrige le bug undefinded après l'utilisation de val
+    else {
+        $("[title=" + id + "]").val(0);
+    }
 }
 
 //écriture du panier
