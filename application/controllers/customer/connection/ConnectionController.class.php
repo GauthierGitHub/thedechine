@@ -23,7 +23,7 @@ class ConnectionController
         } else {
             $flashBag = new FlashBag();
             $flashBag->add(
-                'Mail ou mot de passe invalide, réessayer ou inscrivez vous.'
+                'Mail ou mot de passe invalide, réessayer ou inscrivez-vous.'
             );
             $http->redirectTo('customer');
         }

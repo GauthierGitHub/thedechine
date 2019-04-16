@@ -7,8 +7,6 @@ class NewcustomerController
 
     public function httpPostMethod(Http $http, array $formFields)
     {
-
-
         $http->getRacineDirectory();
 
         $newCustomer = new CustomerModel;
@@ -20,9 +18,6 @@ class NewcustomerController
             $flashBag->add('Votre mail est déjà enregistré à un compte!');
             $http->redirectTo('');
         }
-
-        //préparation du password
-        $formFields['password'] = password_hash($formFields['password'], PASSWORD_DEFAULT);
 
         $id = $newCustomer->addCustomer($formFields);
 
