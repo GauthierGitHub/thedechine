@@ -18,9 +18,6 @@
   <script src="<?= $wwwUrl ?>/js/jquery-3.3.1.min.js"></script>
   <!-- Bootsrap (modified)-->
   <link rel="stylesheet" href="<?= $wwwUrl ?>/css/bootstrap.css">
-  <script src="<?= $wwwUrl ?>/js/bootstrap.js"></script>
-  <!-- JavaScript de l'application -->
-  <script src="<?= $wwwUrl ?>/js/utilities.js"></script>
 </head>
 
 <body>
@@ -112,7 +109,15 @@ endif;
     <?php include $this->viewData['template'] ?>
   </main>
 
+  <!-- Bootsrap js-->
+  <script src="<?= $wwwUrl ?>/js/bootstrap.min.js"></script>
   <!-- Code principal JavaScript de l'application -->
+    <!-- desactivation du panier (évite une erreur) -->
+  <script>
+    function writeCart() {
+      console.log('Panier désactivé en mode administrateur');
+    };
+  </script>
   <script src="<?= $wwwUrl ?>/js/main.js"></script>
   <?php if (isset($is_order)) : ?>
     <script src="<?= $wwwUrl ?>/js/order.js"></script>

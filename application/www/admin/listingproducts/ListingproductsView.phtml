@@ -7,7 +7,7 @@
         <p>Nom :<?= $product['name'] ?></p>
         <p>Description :<?= $product['description'] ?></p>
         <p>Quantité en stock :<?= $product['stock'] ?></p>
-        <p>Prix :<?= $product['price'] ?>/100g</p>
+        <p>Prix pour 100g ou prix unitaire:<?= $product['price'] ?>€</p>
         <a href="<?= $requestUrl; ?>/admin/editproduct?productid=<?= $product['id'] . "&jeton=" . $_SESSION['jeton']; ?>" class="white">Éditer ce produit</a>
 
         <form action="<?= $requestUrl; ?>/admin/listingproducts" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce produit ?');">

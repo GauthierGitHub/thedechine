@@ -25,29 +25,29 @@ document.addEventListener("DOMContentLoaded", function (event) {
 //évenement branché dans main.js. Marche seulement pour la page product
 function more() {
     //récupération de l'id du produit
-    var id = $(this).attr('productid');
+    var id = $(this).attr('name');
     //récupération de la quantité présente actuellement dans l'input 
-    var quantity = $("[productIdQte=" + id + "]").val();
+    var quantity = $("[title=" + id + "]").val();
     if (quantity.length == 0) {
         quantity = 0;
     };
     quantity = parseInt(quantity) + 1;
     //écriture de la nouvelle quantité
-    $("[productIdQte=" + id + "]").val(quantity);
+    $("[title=" + id + "]").val(quantity);
     //inscription du nouveau panier
     /*addProductToCart();*/
 }
 function less() {
     //récupération de l'id du produit
-    var id = $(this).attr('productid');
+    var id = $(this).attr('name');
     //récupération de la quantité présente actuellement dans l'input 
-    var quantity = parseInt($("[productIdQte=" + id + "]").val());
+    var quantity = parseInt($("[title=" + id + "]").val());
     if (quantity.length == 0) {
         quantity = 0;
     }
     //écriture de la nouvelle quantité
     quantity = parseInt(quantity) - 1;
-    $("[productIdQte=" + id + "]").val(quantity);
+    $("[title=" + id + "]").val(quantity);
     //inscription du nouveau panier
     /*addProductToCart();*/
 }
