@@ -4,7 +4,6 @@
 
 
 document.addEventListener("DOMContentLoaded", function (event) {
-  console.log("DOM entièrement chargé et analysé");
   displayOrder()
 });
 
@@ -26,9 +25,6 @@ $(document).ready(function () {
 function displayOrder() {
   var detailsButtons = document.querySelectorAll('.shower');
   var divWithDetails = document.querySelectorAll('.hiddenDetail');
-  console.log(detailsButtons);
-  console.log(divWithDetails);
-
 
   for (var i = 0; i < detailsButtons.length; i++) {
     detailsButtons[i].classList.add('order' + i)
@@ -36,6 +32,7 @@ function displayOrder() {
     detailsButtons[i].addEventListener('click', ondetailsButtonsClicked);
   }
 }
+
 function ondetailsButtonsClicked(event) {
   var classes = $(this).attr('class');
   var i = classes.substr(classes.length - 1);
