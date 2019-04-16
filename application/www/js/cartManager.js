@@ -38,6 +38,7 @@ function addProductToCart(event) {
         writeCart();
     }
     //cas de remise à zéro
+    /*
     else if (quantity == 0) {
         cart.deleteProduct(id);
         //écrasement des données dans le local
@@ -45,9 +46,10 @@ function addProductToCart(event) {
         //écriture du nouveau panier
         writeCart();
     }
-    //corrige le bug undefinded après l'utilisation de val
+    */
+    //corrige le bug undefined après l'utilisation de val
     else {
-        $("[title=" + id + "]").val(0);
+        $("[title=" + id + "]").val(1);
     }
 }
 
@@ -122,7 +124,7 @@ function toOrder() {
     }
 }
 
-//supression dans le panier
+//suppression dans le panier
 function deleteProduct(event) {
     //nouveau panier
     var cart = new Cart;
