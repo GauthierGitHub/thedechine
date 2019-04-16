@@ -9,12 +9,12 @@
         <p><?=$product['description']?></p>
 
         <div class="control">  
-            <input class='less' productid='<?=$product['id']?>' type="button" value="-">
-            <input class="quantity input-text qty" productIdQte="<?=$product['id']?>" type="number" name="qty"  title="Qté"  min="-1" readonly="readonly">
-            <input class='more' productid='<?=$product['id']?>' type="button" value="+">
+            <input class='less' name='<?=$product['id']?>' type="button" value="-">
+            <input class="quantity input-text qty" title="<?=$product['id']?>" type="number" name="qty" value="1" min="-1" readonly="readonly">
+            <input class='more' name='<?=$product['id']?>' type="button" value="+">
         </div>            
 
-        <a class="addProductToCart" href="#none" productid="<?=$product['id']?>">Ajouter ce produit à mon panier<i class="fa fa-shopping-cart"></i>&nbsp;</a>
+        <a class="addProductToCart" href="#none" name="<?=$product['id']?>">Ajouter ce produit à mon panier<i class="fa fa-shopping-cart"></i>&nbsp;</a>
     </section>
 
 <?php endforeach; ?>

@@ -18,12 +18,11 @@ function addProductToCart(event) {
         cart.img_url = curentCart.img_url;
     }
     //récupération des nouvelles données à enregistrer
-    var id = $(this).attr('productid');
-    var quantity = $("[productIdQte=" + id + "]").val();
+    var id = $(this).attr('name');
+    var quantity = $("[title=" + id + "]").val();
     var name = $(".name" + id).text();
     var price = $(".price" + id).text();
     var img = $(".img-responsive" + id).attr("src");
-    console.log(cart);
     //poussées dans le tableau
     if (quantity > 0) {
         cart.pushed(id, quantity);
@@ -45,7 +44,7 @@ function addProductToCart(event) {
     }
     //nécessaire pour corriger un bug : .val() remet l'input en string
     quantity = parseInt(quantity);
-    $("[productIdQte=" + id + "]").val(quantity);
+    $("[title=" + id + "]").val(quantity);
 }
 
 //écriture du panier
@@ -71,10 +70,10 @@ function writeCart() {
                         + '<img class="product_img" src="' + cart.img_url[index[i]] + '" width="50px">'
                         + '<p class="product_name">' + cart.products_names[index[i]] + '</p>'
                         + '</h5>'
-                        + '<p class="quantity" productIdQte="' + index[i] + '">Quantité (lot de 100g) : ' + cart.cartListQte[index[i]] + '</p>'
+                        + '<p class="quantity" title="' + index[i] + '">Quantité (lot de 100g) : ' + cart.cartListQte[index[i]] + '</p>'
                         + '<p class="product_price">Prix : ' + cart.products_prices[index[i]] + '</p>'
                         + '<p class="under_total">Sous-total : ' + cart.cartListQte[index[i]] * parseInt(cart.products_prices[index[i]]) + '€</p>'
-                        + '<a class="delete" productid="' + index[i] + '" href="#none">Supprimer cet article</a>'
+                        + '<a class="delete" name="' + index[i] + '" href="#none">Supprimer cet article</a>'
                         + '<hr>'
                         +
                         '</li>')
@@ -94,7 +93,6 @@ function writeCart() {
         }
         //boutons de suppression d'un produit dans le panier
         var deleteButtons = document.querySelectorAll('.delete');
-        console.log(deleteButtons);
         for (var i = 0; i < deleteButtons.length; i++) {
             deleteButtons[i].addEventListener('click', deleteProduct);
         }
@@ -124,7 +122,7 @@ function toOrder() {
 function deleteProduct(event) {
     //nouveau panier
     var cart = new Cart;
-    var id = $(this).attr('productid');
+    var id = $(this).attr('name');
     //on récupère le panier déjà enregistré
     var curentCart = JSON.parse(localStorage.getItem('panier'));
     //si il existe, on le manipule pour l'afficher plus tard
