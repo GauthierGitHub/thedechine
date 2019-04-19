@@ -1,26 +1,26 @@
 <section id="connexion" class="col-lg-6 col-md-6 col-sd-12">
 
-    <form action="<?= $requestUrl ?>/customer/connection" method="post" novalidate="novalidate">
+    <form class="form2 clientform" action="<?= $requestUrl ?>/customer/connection" method="post">
         <fieldset>
+            <legend>Identifiez-vous :</legend>
+            <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
+            <ol>
+                <li>
+                    <label for=mail>Email</label>
+                    <input id=mail name=login[usermail] type=email placeholder="exemple@domaine.com" maxlength="80" required autofocus>
+                </li>
+                <li>
+                    <label for=pass>Password</label>
+                    <input id=pass name="login[password]" maxlength="160" type=password required autofocus>
+                </li>
+                <!-- pas encore mis en place
+                <a class=" action remind" href="<?= $requestUrl ?>/customer/forgotpassword">Mot de passe oublié ?</a>
+                    -->
+            </ol>
+        </fieldset>
 
-            <h3>Identifiez-vous</h3>
-            <br>
-
-            <label for="email">Email</label>
-            <input id="email" name="login[usermail]" value="" autocomplete="off" type="email" class="input-text" title="Email" data-validate="{'validate-email':true}">
-            <br>
-
-            <label for="pass">Mot de passe</label>
-            <input  id="pass" name="login[password]" type="password" autocomplete="off" class="input-text" title="Mot de passe">
-            <br>
-
-            <button type="submit">Se connecter</button>
-            <br>
-            <!-- pas encore mis en place
-            <a class="action remind" href="<?= $requestUrl ?>/customer/forgotpassword">Mot de passe oublié ?</a>
-            -->
-            <br>
-
+        <fieldset>
+            <button type=submit>Se connecter</button>
         </fieldset>
     </form>
 
@@ -29,17 +29,7 @@
 <section id="inscription" class="col-lg-6 col-md-6 col-sd-12">
 
     <h3>Nouveau client ?</h3>
-    <!--
-    <p>Inscrivez-vous et bénéficiez de tous les avantages d'un compte en ligne :</p>
-    <ul>
-        <li>Accéder rapidement à l'historique de vos commandes</li>
-        <li>Bénéficier des offres spéciales de Thé de Chine</li>
-        <li>Sauvegarder votre panier en cours</li>
-        <li>Gérer vos informations personnelles et votre carnet d'adresses</li>
-        <li>Déposer vos avis sur les thés dégustés</li>
-        <li>Sauvegarder et partager vos coups de coeur</li>
-    </ul>
-    -->
+
     <a href="<?= $requestUrl ?>/customer/createaccount">Créer son compte</a>
 
 </section>

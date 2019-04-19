@@ -1,14 +1,14 @@
 <h2>Liste des produits</h2>
 <br>
 <?php foreach ($productModel as $product) : ?>
-    <div class="meal-list">
+    <div class="listingdiv col-12">
         <img width="200px" height="200px" src="<?= $wwwUrl ?>/images/teapic/<?= $product['image'] ?>" alt="<?= $product['name'] ?>">
 
         <p>Nom :<?= $product['name'] ?></p>
         <p>Description :<?= $product['description'] ?></p>
         <p>Quantité en stock :<?= $product['stock'] ?></p>
         <p>Prix pour 100g ou prix unitaire:<?= $product['price'] ?>€</p>
-        <a href="<?= $requestUrl; ?>/admin/editproduct?productid=<?= $product['id'] . "&jeton=" . $_SESSION['jeton']; ?>" class="white">Éditer ce produit</a>
+        <a class=button href="<?= $requestUrl; ?>/admin/editproduct?productid=<?= $product['id'] . "&jeton=" . $_SESSION['jeton']; ?>">Éditer ce produit</a>
 
         <form action="<?= $requestUrl; ?>/admin/listingproducts" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce produit ?');">
             <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />

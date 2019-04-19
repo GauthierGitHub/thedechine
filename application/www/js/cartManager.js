@@ -108,7 +108,7 @@ function writeCart() {
 }
 
 // envoi de la commande
-$('.submit').on('click', toOrder);
+$('.clio_button').on('click', toOrder);
 function toOrder() {
     var cart = JSON.parse(localStorage.getItem('panier'));
     if (cart != null && Object.keys(cart['cartListQte']).length != 0) {
