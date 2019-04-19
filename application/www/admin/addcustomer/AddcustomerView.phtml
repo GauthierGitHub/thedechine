@@ -1,39 +1,53 @@
-<h3>Ajouter un client</h3>
+<h3 class="col-12">Ajouter un client</h3>
 
-<form action="addcustomer" method="post">
+<form class="form2 formaddcustomer" action="addcustomer" method="post" enctype="multipart/form-data">
+    <fieldset>
+        <legend>Identité</legend>
+        <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
+        <ol>
+            <li>
+                <label for=lastname>Nom</label>
+                <input id=lastname name=lastname type=text placeholder="Nom" maxlength="40" required autofocus>
+            </li>
+            <li>
+                <label for=firstname>Prénom</label>
+                <input id=firstname name=firstname type=text placeholder="Prénom" maxlength="40" required autofocus>
+            </li>
+            <li>
+                <label for=nickname>Pseudo</label>
+                <input id=nickname name=nickname type=text placeholder="Pseudo" maxlength="20" required autofocus>
+            </li>
+            <li>
+                <label for=mail>Email</label>
+                <input id=mail name=mail type=email placeholder="exemple@domaine.com" maxlength="80" required>
+            </li>
+            <li>
+                <label for=password>Mdp</label>
+                <input id=password name=password maxlength="160"  type=password required>
+            </li>
+        </ol>
+    </fieldset>
 
-    <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
-    <p>
-        <label for="lastname">Nom</label><br>
-        <input type="text" name="lastname">
-    </p>
-    <p>
-        <label for="firstname">Prénom</label><br>
-        <input type="text" name="firstname">
-    </p>
-    <p>
-        <label for="mail">Mail</label><br>
-        <input type="email" name="mail">
-    </p>
-    <p>
-        <label for="nickname">Pseudo</label><br>
-        <input type="text" name="nickname">
-    </p>
-    <p>
-        <label for="password">Mot de passe</label><br>
-        <input type="text" name="password">
-    </p>
-    <p>
-        <label for="adress">Adresse</label><br>
-        <textarea name="adress"></textarea>
-    </p>
-    <p>
-        <label for="cp">Code postal</label><br>
-        <input type="number" name="cp">
-    </p>
-    <p>
-        <label for="city">Ville</label><br>
-        <input type="text" name="city">
-    </p>
-    <input type="submit" value="Enregistrer">
+    <fieldset>
+        <legend>Adresse de livraison</legend>
+        <ol>
+            <li>
+                <label for=adress>Adresse</label>
+                <textarea id=adress name=adress rows=5 required></textarea>
+            </li>
+            <li>
+                <label for=cp>CP</label>
+                <input id=cp name=cp type=text maxlength="20" required>
+            </li>
+            <li>
+                <label for=city>Ville</label>
+                <input id=city name=city type=city maxlength="80" required>
+            </li>
+        </ol>
+    </fieldset>
+
+    <fieldset>
+        <button type=submit>Enregistrer</button>
+    </fieldset>
+
 </form>

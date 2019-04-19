@@ -62,7 +62,7 @@ class EditorderController
     public function httpPostMethod(Http $http, array $formFields)
     {
         if (isset($_POST['jeton']) && ($_POST['jeton'] == $_SESSION['jeton'])) {
-
+            var_dump($formFields);
             //édition d'une commande
             $order = new OrderModel;
             $order->editOrder($formFields);

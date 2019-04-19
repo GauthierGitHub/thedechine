@@ -1,4 +1,5 @@
-<h2>Liste des commandes</h2>
+<h2 class="col-12">Liste des commandes</h2>
+<p id=ordersort class="col-12">Trié par date de la prise de commande.</p>
 <br>
 <!-- Initialisation du numéro de commande -->
 <?php $curentOrder = 0 ?>
@@ -6,83 +7,89 @@
     <?php if ($curentOrder == 0 or $curentOrder !== $order['id']) : ?>
 
         <!-- Détail commande -->
-        <h3><a>Commande n° <?= $order['id'] ?></a></h3>
+        <div class="listingdivorder col-12">
+            <h3><a>Commande n° <?= $order['id'] ?></a></h3>
 
-        <a href="#" onclick="return false;" class='shower'>Afficher / cacher les détails</a>
-        <br>
-        <br>
-        <div class="hiddenDetail">
-            <p>Date de commande : <?= $order['date'] ?></p>
-            <p>Status de la commande : <?= $order['send'] ?></p>
-            <p>Coordonnées du client :</p>
-            <ul>
-                <li><?= $order['firstname'] ?> <?= $order['lastname'] ?></li>
-                <li><?= $order['adress'] ?></li>
-                <li><?= $order['cp'] ?></li>
-                <li><?= $order['city'] ?></li>
-            </ul>
-            <p>Coût total de la commande :
-                <?= $totalAmount[$order['id']] ?> </p>
-
-            <!-- changement du numéro de la commande -->
-            <?php $curentOrder = $order["id"]; ?>
-
-
-            <!-- changement du status (livraison) -->
-            <form class="changeStatus" action="<?= $requestUrl; ?>/admin/listingorders" method="post">
-                <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
-                <input type="text" class="hidden" name="orderid" value="<?= $curentOrder ?>">
-                <label for="send">Changer le status de la commande</label><br>
-                <select name="send" value="0">
-                    <option value="0">en cours</option>
-                    <option value="1">livrée</option>
-                </select>
-                <input type="submit" value="Confirmer">
-            </form>
-
-            <h5>Détail de la commande :</h5>
-            <table class="generic-table meal-list">
-                <thead>
-                    <tr>
-                        <td>Produit</td>
-                        <td>Catégorie</td>
-                        <td>Qté</td>
-                        <td>Prix unitaire</td>
-                        <td>Sous total</td>
-                    </tr>
-                </thead>
-                <tbody>
-
-
-                    <!-- listing commandes -->
-                    <?php foreach ($orders as $order) : ?>
-                        <?php if ($order['id'] == $curentOrder) : ?>
-
-                            <a href="<?= $requestUrl; ?>/admin/editorder?orderid=<?= $curentOrder ?>&jeton=<?= $_SESSION['jeton'] ?>">
-                                <tr>
-                                    <td><?= $order['product_name'] ?></td>sdfqsfdqf
-                                    <td><?= $order['name'] ?></td>
-                                    <td><?= $order['quantity'] ?></td>
-                                    <td><?= $order['price'] ?></td>
-                                    <td><?= $order['soustotal'] ?>€</td>
-                                </tr>
-                            </a>
-
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-
-                </tbody>
-            </table>
-            <a href="<?= $requestUrl; ?>/admin/editorder?orderid=<?= $curentOrder ?>&jeton=<?= $_SESSION['jeton'] ?>">Éditer cette commande</a>
-
-
-            <!-- suppression de la commande -->
-            <form action="<?= $requestUrl; ?>/admin/listingorders" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cette commande ?');">
-                <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
-                <input type="text" class="hidden" name="orderid" value="<?= $curentOrder ?>">
-                <input class="deletebutton" type="submit" value="Supprimer cette commande">
-            </form>
+            <a href="#" onclick="return false;" class='shower'>Afficher / cacher les détails</a>
             <br>
+            <br>
+            <div class="hiddenDetail">
+                <p>Date de commande : <?= $order['date'] ?></p>
+                <p>Status de la commande : <?= $order['send'] ?></p>
+                <p>Coordonnées du client :</p>
+                <ul>
+                    <li><?= $order['firstname'] ?> <?= $order['lastname'] ?></li>
+                    <li><?= $order['adress'] ?></li>
+                    <li><?= $order['cp'] ?></li>
+                    <li><?= $order['city'] ?></li>
+                </ul>
+                <p>Coût total de la commande :
+                    <?php if (isset($totalAmount[$order['id']])) : ?>
+                        <?= $totalAmount[$order['id']] ?> €
+                    <?php else : ?>
+                        <?= 'données manquantes' ?>
+                    <?php endif; ?>
+                </p>
+                <!-- changement du numéro de la commande -->
+                <?php $curentOrder = $order["id"]; ?>
+
+
+                <!-- section dédié au changement du status (livraison) -->
+                <form class="changeStatus" action="<?= $requestUrl; ?>/admin/listingorders" method="post">
+                    <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
+                    <input type="text" class="hidden" name="orderid" value="<?= $curentOrder ?>">
+                    <label for="send">Changer le status de la commande</label><br>
+                    <select class=button name="send" value="0">
+                        <option value="0">en cours</option>
+                        <option value="1">livrée</option>
+                    </select>
+                    <input class=button type="submit" value="Confirmer">
+                </form>
+
+                <h5>Détail de la commande :</h5>
+                <table class="generic-table meal-list">
+                    <thead>
+                        <tr>
+                            <td>Produit</td>
+                            <td>Catégorie</td>
+                            <td>Qté</td>
+                            <td>Prix unitaire</td>
+                            <td>Sous total</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                        <!-- listing commandes -->
+                        <?php foreach ($orders as $order) : ?>
+                            <?php if ($order['id'] == $curentOrder) : ?>
+
+                                <a href="<?= $requestUrl; ?>/admin/editorder?orderid=<?= $curentOrder ?>&jeton=<?= $_SESSION['jeton'] ?>">
+                                    <tr>
+                                        <td><?= $order['product_name'] ?></td>
+                                        <td><?= $order['name'] ?></td>
+                                        <td><?= $order['quantity'] ?></td>
+                                        <td><?= $order['price'] ?></td>
+                                        <td><?= $order['soustotal'] ?> €</td>
+                                    </tr>
+                                </a>
+
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+
+                    </tbody>
+                </table>
+                <a class=button href="<?= $requestUrl; ?>/admin/editorder?orderid=<?= $curentOrder ?>&jeton=<?= $_SESSION['jeton'] ?>">Éditer cette commande</a>
+
+
+                <!-- section dédié à la suppression de la commande -->
+                <form action="<?= $requestUrl; ?>/admin/listingorders" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cette commande ?');">
+                    <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
+                    <input type="text" class="hidden" name="orderid" value="<?= $curentOrder ?>">
+                    <input class="deletebutton" type="submit" value="Supprimer cette commande">
+                </form>
+                <br>
+            </div>
         </div>
         <br>
     <?php endif; ?>

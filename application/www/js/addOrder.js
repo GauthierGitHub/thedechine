@@ -1,19 +1,17 @@
-/////////////////////////////////////////////////////////////////////////////////////////
-//  AJOUT DE COMMANDE                                                                  //
-/////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+//  AJOUT/EDITION DE COMMANDE                                        //
+///////////////////////////////////////////////////////////////////////
 
 
 
 document.addEventListener("DOMContentLoaded", function (event) {
-  console.log("DOM entièrement chargé et analysé");
+  //placeholder="Nom"effacerChampsFormulaires()
   checkboxOrders()
+  rightCustomer ()
 });
 
-//activation / desactivation et vidage des champs de formulaire (addorder)
-
-console.log('js lancé');
+//activation / désactivation et vidage des champs de formulaire (addorder)
 function checkboxOrders() {
-
   var checkBoxesArray = document.querySelectorAll('.checkbox');
   var quantityBoxArray = document.querySelectorAll('.togglePost');
 
@@ -23,28 +21,34 @@ function checkboxOrders() {
     quantityBoxArray[i].classList.add('productQuantity' + i);
     checkBoxesArray[i].addEventListener('click', onCheckBoxClicked);
   }
-
-  function onCheckBoxClicked(event) {
-    var classes = $(this).attr('class');
-    var i = classes.substr(classes.length - 1);
-    $('.productQuantity' + i).toggle('slow');
-    if ($('.productQuantity' + i).attr('disabled')) {
-      $('.productQuantity' + i).attr("disabled", false);
-    }
-    else {
-      $('.productQuantity' + i).attr("disabled", true);
-    }
-    ;
+}
+function onCheckBoxClicked(event) { 
+  var i = $(this).attr('class');
+  //On enlève les deux classes checkbox,la classe inputTodelete, puis l'espace entre les deux.
+  var i = i.replace(/checkbox/g, "");
+  i = i.replace(/ /g, "");
+  i = i.replace('inputTodelete', "");
+  $('.productQuantity' + i).toggle('slow');
+  if ($('.productQuantity' + i).attr('disabled')) {
+    $('.productQuantity' + i).attr("disabled", false);
   }
+  else {
+    $('.productQuantity' + i).attr("disabled", true);
+  };
 }
 
-//résoud des bugs quand le navigateur enregistre des champs de formulaire
+//résous des bugs quand le navigateur enregistre des champs de formulaire, fonction qui vide les formulaire
 function effacerChampsFormulaires() {
   $('.inputTodelete')
     .not(':button, :submit, :reset, :hidden')
-    .val('')
+    //.val('')
     .removeAttr('checked')
     .removeAttr('selected');
-  console.log('champs de formulaire vidées')
 }
 
+//affichage du bon client en mode édition
+function rightCustomer (){
+  var rightCustomerId = $('select').attr('value');
+  var rightOption = $("option[value|='"+rightCustomerId+"']");
+  rightOption.attr("selected","selected");
+}
