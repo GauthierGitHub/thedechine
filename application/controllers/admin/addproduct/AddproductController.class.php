@@ -32,56 +32,56 @@ class AddproductController
             *Importation des photos inspiré de: https://antoine-herault.developpez.com/tutoriels/php/upload/
             *remanié par Gauthier barbet pour corriger des bugs, dues notamment à l'utilisation de preg_replace;
             */
-
             if (isset($_FILES['photoToUpload'])) {
-                    $dossier = '/home/barbet/Dévellopement/3wa/Developpement/projetPersonnel/thedechine/application/www/images/teapic/';
-                    $fichier = basename($_FILES['photoToUpload']['name']);
-
-                    $taille_maxi = 10000000;
-                    $taille = filesize($_FILES['photoToUpload']['tmp_name']);
-                    $extensions = array('.png', '.gif', '.jpg', '.jpeg');
-                    $extension = strrchr($_FILES['photoToUpload']['name'], '.');
-                    //Début des vérifications de sécurité...
-                    if (!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
-                        {
-                            $erreur = 'Vous devez uploader un fichier de type png, gif, jpg, jpeg, txt ou doc...';
-                        }
-                    if ($taille > $taille_maxi) {
-                            $erreur = 'Le fichier est trop lourd, la taille maximale est 10Mo...';
-                        }
-                    if (!isset($erreur)) //S'il n'y a pas d'erreur, on upload
-                        {
-                            //On formate le nom du fichier ici...
-                            $fichier = strtr(
-                                $fichier,
-                                'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
-                                'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy'
-                            );
-                            $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
-
-                            if (move_uploaded_file($_FILES['photoToUpload']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
-                                {
-                                    $flashBag = new FlashBag();
-                                    $flashBag->add('Upload effectué avec succès !');
-
-                                    //ajout du produit
-                                    $product = new ProductModel;
-                                    $product->addProduct($formFields);
-                                    $flashBag = new FlashBag();
-                                    $flashBag->add('Le nouveau produit a bien été enregistrée!');
-                                    $http->redirectTo('admin/listingproducts');
-                                } else //Sinon (la fonction renvoie FALSE).
-                                {
-                                    $flashBag = new FlashBag();
-                                    $flashBag->add('Echec de l\'upload !');
-                                    $http->redirectTo('admin/listingproducts');
-                                }
-                        } else {
-                            $flashBag = new FlashBag();
-                            $flashBag->add($erreur);
-                            $http->redirectTo('admin/listingproducts');
-                        }
+                /*version locale*/
+                $dossier = '/home/barbet/Devellopement/3wa/Developpement/projetPersonnel/thedechine/application/www/images/teapic/';
+                //$dossier = '/var/www/html/thedechine/application/images/teapic/';
+                $fichier = basename($_FILES['photoToUpload']['name']);
+                $taille_maxi = 10000000;
+                $taille = filesize($_FILES['photoToUpload']['tmp_name']);
+                $extensions = array('.png', '.gif', '.jpg', '.jpeg');
+                $extension = strrchr($_FILES['photoToUpload']['name'], '.');
+                //Début des vérifications de sécurité...
+                if (!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
+                    {
+                        $erreur = 'Vous devez uploader un fichier de type png, gif, jpg, jpeg, txt ou doc...';
+                    }
+                if ($taille > $taille_maxi) {
+                    $erreur = 'Le fichier est trop lourd, la taille maximale est 10Mo...';
                 }
+                if (!isset($erreur)) //S'il n'y a pas d'erreur, on upload
+                    {
+                        //On formate le nom du fichier ici...
+                        $fichier = strtr(
+                            $fichier,
+                            'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
+                            'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy'
+                        );
+                        $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
+
+                        if (move_uploaded_file($_FILES['photoToUpload']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
+                            {
+                                $flashBag = new FlashBag();
+                                $flashBag->add('Upload effectué avec succès !');
+
+                                //ajout du produit
+                                $product = new ProductModel;
+                                $product->addProduct($formFields);
+                                $flashBag = new FlashBag();
+                                $flashBag->add('Le nouveau produit a bien été enregistrée!');
+                                $http->redirectTo('admin/listingproducts');
+                            } else //Sinon (la fonction renvoie FALSE).
+                            {
+                                $flashBag = new FlashBag();
+                                $flashBag->add('Echec de l\'upload !');
+                                $http->redirectTo('admin/listingproducts');
+                            }
+                    } else {
+                    $flashBag = new FlashBag();
+                    $flashBag->add($erreur);
+                    $http->redirectTo('admin/listingproducts');
+                }
+            }
         } else {
             die("ID ou jeton de session invalide.");
         }

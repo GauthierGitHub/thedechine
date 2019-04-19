@@ -1,62 +1,75 @@
-<h3>Éditer un produit</h3>
+<h3 class="col-12">Éditer un produit</h3>
 
-<p>Produit n°<?= $productData['id'] ?></p>
+<p class="col-12">Produit n°<?= $productData['id'] ?></p>
 
-<form action="<?= $requestUrl; ?>/admin/editproduct" method="post">
+<form class=form2 action="<?= $requestUrl; ?>/admin/editproduct" method="post">
 
-    <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
-    <p class="hidden">
-        <label for="id">id</label><br>
-        <input type="text" name="id" value="<?= $productData['id'] ?>">
-    </p>
-    <p>
-        <label for="name">Nom</label><br>
-        <input type="text" name="name" value="<?= $productData['name'] ?>">
-    </p>
-    <p>
-        <label for="category_id">Catégorie :</label><br>
-        <select name="category_id">
-            <?php foreach ($categories as $category) : ?>
-                <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
-            <?php endforeach; ?>
-        </select>
-    </p>
-    <p>
-        <label for="description">Description</label><br>
-        <input type="text" name="description" value="<?= $productData['description'] ?>"></textarea>
-    </p>
-    <p>
-        <label for="image">Nom de l'actuelle image : <?= $productData['image'] ?></label><br>
-        <input type="hidden" type="text" name="image" value="<?= $productData['image'] ?>">
-    </p>
-    <p>
-        <label for="stock">Quantité en stock</label><br>
-        <input type="number" name="stock" value="<?= $productData['stock'] ?>">
-    </p>
-    <p>
-        <label for="price">Prix/100g en euros ou prix unitaire</label><br>
-        <input type="number" name="price" value="<?= $productData['price'] ?>">
-    </p>
-    <input type="submit" value="Enregistrer">
+    <fieldset>
+        <legend>Produit</legend>
+        <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
+        <p class="hidden">
+            <label for="id">id</label><br>
+            <input id="id" type="text" name="id" value="<?= $productData['id'] ?>">
+        </p>
+        <ol>
+            <li>
+                <label for="name">Nom</label><br>
+                <input id="name" type="text" name="name" value="<?= $productData['name'] ?>" maxlength="40">
+            </li>
+            <li>
+                <label for="category_id">Catégorie :</label><br>
+                <select id="category_id" name="category_id">
+                    <?php foreach ($categories as $category) : ?>
+                        <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </li>
+            <li>
+                <label for="description">Description</label><br>
+                <input id="description" type="text" name="description" value="<?= $productData['description'] ?>" maxlength="160" required autofocus>
+            </li>
+            <li>
+                <label for="stock">Nb en stock</label><br>
+                <input id="stock" type="number" name="stock" value="<?= $productData['stock'] ?>" maxlength="20" required autofocus>
+            </li>
+            <li>
+                <label class="pricelabel" for="price">Prix/100g en euros ou prix unitaire</label><br>
+                <input id="price" type="number" name="price" value="<?= $productData['price'] ?>" maxlength="20" required>
+            </li>
+        </ol>
+    </fieldset>
+    <fieldset>
+        <button type=submit>Mettre à jour</button>
+    </fieldset>
 
 </form>
+
 <br>
+<h3>Changer l'image du produit</h3>
+<br>
+<p class="col-12">Nom de l'actuelle image : <?= $productData['image'] ?></p>
 <br>
 
-<h3>Remplacer l'image du produit</h3>
-
-<form class="cabinet" method="POST" action="upload" enctype="multipart/form-data">
-
-    <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
-    <p class="hidden">
-        <label for="id">id</label><br>
-        <input type="text" name="id" value="<?= $productData['id'] ?>">
-    </p>
-    <!-- On limite le fichier à 10000000 = 10MB-->
-    <input type="hidden" name="MAX_FILE_SIZE" value="10000000">
-    Fichier image limité à 10MB:
-    <br>
-    <input type="file" name="photoToUpload">
-    <input type="submit" name="envoyer" value="Envoyer le fichier">
+<form class="form2" method="POST" action="upload" enctype="multipart/form-data">
+    <fieldset>
+        <legend>Fichier image limité à 10MB:</legend>
+        <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
+        <ol>
+            <li class="hidden">
+                <label for="id">id</label><br>
+                <input type="text" name="id" value="<?= $productData['id'] ?>">
+            </li>
+            <!-- On limite le fichier à 10000000 = 10MB-->
+            <li class="hidden">
+                <input type="hidden" name="MAX_FILE_SIZE" value="10000000">
+            </li>
+            <li>
+                <input type="file" name="photoToUpload">
+            </li>
+        </ol>
+    </fieldset>
+    <fieldset>
+        <button type=submit>Mettre à jour</button>
+    </fieldset>
 
 </form>
