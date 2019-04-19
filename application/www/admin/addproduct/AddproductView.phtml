@@ -1,44 +1,43 @@
 <h3>Ajouter un produit</h3>
 
-<form action="addproduct" method="post" enctype="multipart/form-data">
+<form class="form2" action="addproduct" method="post" enctype="multipart/form-data">
+    <fieldset>
+        <legend>Nouveau produit</legend>
+        <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
+        <ol>
+            <li>
+                <label for=name>Nom</label>
+                <input id=name name=name type=text placeholder="Nom" maxlength="40" required autofocus>
+            </li>
+            <li>
+                <label for="category">Catégorie :</label><br>
+                <select name="category">
+                    <?php foreach ($category_name as $category) : ?>
+                        <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </li>
+            <li>
+                <label for=description>Description</label>
+                <input id=description name=description type=text placeholder="Description" maxlength="160" required autofocus>
+            </li>
+            <li>
+                <input type="hidden" name="MAX_FILE_size" value="10000000">
+                Fichier image limité 10MB: <input type="file" name="photoToUpload">
+            </li>
+            <li>
+                <label for=stock>Nb en stock</label>
+                <input id=stock name=stock type=number placeholder="Nombre stock" maxlength="20" required autofocus>
+            </li>
+            <li>
+                <label class="pricelabel" for=price>Prix/100g ou prix unitaire en euros</label>
+                <input id=price name=price type=number placeholder="exemple : 100 " maxlength="20" required>
+            </li>
+        </ol>
+    </fieldset>
 
-    <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
-
-    <p>
-        <label for="name">Nom</label><br>
-        <input type="text" name="name">
-    </p>
-
-    <p>
-        <label for="category">Catégorie :</label><br>
-        <select name="category">
-            <?php foreach ($category_name as $category) : ?>
-                <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
-            <?php endforeach; ?>
-        </select>
-    </p>
-
-    <p>
-        <label for="description">Description</label><br>
-        <textarea name="description"></textarea>
-    </p>
-
-    <p>
-        <input type="hidden" name="MAX_FILE_SIZE" value="10000000">
-        Fichier image limité 10MB: <input type="file" name="photoToUpload">
-    </p>
-
-    <p>
-        <label for="stock">Nombre en stock</label><br>
-        <input type="number" name="stock">
-    </p>
-
-    <p>
-        <label for="price">Prix/100g ou prix unitaire en euros</label><br>
-        <input type="number" name="price">
-    </p>
-
-    <input type="submit" value="Enregistrer">
+    <fieldset>
+        <button type=submit>Enregistrer</button>
+    </fieldset>
 
 </form>
-<br>

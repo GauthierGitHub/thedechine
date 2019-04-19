@@ -106,12 +106,11 @@ class ProductModel
     $database = new Database;
     $sql =
       "UPDATE `products` 
-    SET `name`= ?,`category_id`= ?,`description`= ?,`image`= ?,`stock`= ?,`price`= ? WHERE id = ? ";
+    SET `name`= ?,`category_id`= ?,`description`= ?, `stock`= ?,`price`= ? WHERE id = ? ";
     $values = [
       htmlspecialchars($formFields['name']),
       htmlspecialchars($formFields['category_id']),
       htmlspecialchars($formFields['description']),
-      htmlspecialchars($formFields['image']),
       htmlspecialchars($formFields['stock']),
       htmlspecialchars($formFields['price']),
       htmlspecialchars(intval($formFields['id']))
