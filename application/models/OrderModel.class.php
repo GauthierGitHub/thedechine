@@ -101,8 +101,8 @@ class OrderModel
         //récupération des données de quantité de l'ancienne commande pour la gestion du stock
         $sql =
             "SELECT quantity, product_id
-    FROM orderdetails
-    WHERE order_id = ?";
+            FROM orderdetails
+            WHERE order_id = ?";
         $value =  [
             $formFields['id']
         ];
@@ -128,17 +128,15 @@ class OrderModel
         $value = [htmlspecialchars($formFields['id'])];
         $database->executeSql($sql, $value);
 
+        var_dump($database);
         //nouvelle commande
         $sql =
-            "UPDATE `orders` 
-            SET `customer_id`= ?,
-            WHERE id = ?";
+            "UPDATE `orders` SET `customer_id`= ? WHERE id = ?";
         $values = [
             htmlspecialchars($formFields['customer_id']),
             htmlspecialchars(intval($formFields['id'])),
         ];
         $database->executeSql($sql, $values);
-
         //rajout des nouveaux produits et qté commandé
         for ($i = 0; $i < count($formFields['product']); $i++) {
             if ($i % 2 == 0) {

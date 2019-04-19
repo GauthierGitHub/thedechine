@@ -1,8 +1,8 @@
 <h2>Éditer une commande</h2>
 
-<h3>Commande n°<?= $orderData['order_id'] ?></h3>
+<h3 class="col-12">Commande n°<?= $orderData['order_id'] ?></h3>
 <br>
-<h4>Récapitulatif de la commande</h4>
+<h4 class="col-12">Récapitulatif de la commande</h4>
 
 <ul>Client :
     <li><?= $orderData['lastname'] ?> <?= $orderData['firstname'] ?></li>
@@ -23,50 +23,45 @@
         <?php for ($i = 0; $i < count($orderData['product_name']); $i++) : ?>
             <tr>
                 <td><?= $orderData['product_name'][$i] ?></td>
-                <td><?= $orderData['price'][$i] ?></td>
                 <td><?= $orderData['quantity'][$i] ?></td>
+                <td><?= $orderData['price'][$i] ?></td>
                 <td><?= $orderData['soustotal'][$i] ?></td>
             </tr>
         <?php endfor; ?>
     </tbody>
 </table>
-<br>
 
-<form id="form" action="editorder" method="post">
-
-    <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
-    <p class="hidden">
-        <label for="id">id</label><br>
-        <input type="text" name="id" value="<?= $orderData['order_id'] ?>">
-    </p>
-
-    <p>
-        <label for="customer_id">Nom du client :</label><br>
-        <select name="customer_id" value="<?= $orderData['customer_id'] ?>">
-
-            <?php foreach ($dataCustomers as $customer) : ?>
-
-                <option value="<?= $customer['id'] ?>"><?= $customer['firstname'] ?> <?= $customer['lastname'] ?></option>
-
+<form class=form2 action="editorder" method="post" enctype="multipart/form-data">
+    <fieldset>
+        <legend>Client</legend>
+        <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
+        <input type="hidden" type="text" name="id" value="<?= $orderData['order_id'] ?>">
+        <ol>
+            <li>
+                <label for="customer_id">Nom Prénom</label><br>
+                <select name="customer_id" value="<?= $orderData['customer_id']?>">
+                    <?php foreach ($dataCustomers as $customer) : ?>
+                        <option value="<?= $customer['id'] ?>"><?= $customer['firstname'] ?> <?= $customer['lastname'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </li>
+        </ol>
+    </fieldset>
+    <!-- Partie généré en php, géré en js -->
+    <fieldset>
+        <legend>Produit(s) commandée(s)</legend>
+        <ol>
+            <?php foreach ($dataProducts as $product) : ?>
+                <li>
+                    <input class="checkbox inputTodelete" type="checkbox" name="product[]" value="<?= $product['id'] ?>"> <?= $product['name'] ?><br>
+                    <input class="togglePost inputTodelete" disabled="disabled" type="number" name="product[]" placeholder="Quantité" min="1" max="1000" required autofocus><br>
+                </li>
             <?php endforeach; ?>
+        </ol>
+    </fieldset>
 
-        </select>
-    </p>
-
-
-    <!-- Partie générée en php, géré en js -->
-    <p>
-        <label for="product">Produit :</label><br>
-
-        <?php foreach ($dataProducts as $product) : ?>
-
-            <input class="checkbox inputTodelete" type="checkbox" name="product[]" value="<?= $product['id'] ?>"> <?= $product['name'] ?><br>
-            <p>Quantité</p>
-            <input class="togglePost inputTodelete" disabled="disabled" type="number" name="product[]" value=""><br>
-
-        <?php endforeach; ?>
-    </p>
-
-    <input type="submit" value="Enregistrer">
+    <fieldset>
+        <button type=submit>Enregistrer</button>
+    </fieldset>
 
 </form>
