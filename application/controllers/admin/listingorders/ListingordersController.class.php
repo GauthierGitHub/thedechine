@@ -14,15 +14,16 @@ class ListingOrdersController
         //remplacement des  valeurs null & affichage livraison
         for ($i = 0; $i < count($orders); $i++) {
             $orders[$i] = preg_replace('/^$/', 'Donnée supprimée', $orders[$i]);
+            $orders[$i] = preg_replace('/^null$/', 'Donnée supprimée', $orders[$i]);
             if ($orders[$i]['send'] == 0) {
                 $orders[$i]['send'] = 'en cours';
             } else {
                 $orders[$i]['send'] = 'livrée';
             }
         }
-
         //total de la facture des commandes
         $totalOrders = $orderModel->ordersTotal();
+
         //remplacement des  valeurs null
         for ($i = 0; $i < count($totalOrders); $i++) {
             $totalOrders[$i] = preg_replace('/^$/', "Manque de données produits, vérifiez l'inventaire de vos produits.", $totalOrders[$i]);
