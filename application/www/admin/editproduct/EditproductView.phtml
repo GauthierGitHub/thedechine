@@ -30,11 +30,11 @@
             </li>
             <li>
                 <label for="stock">Nb en stock</label>
-                <input id="stock" type="number" name="stock" value="<?= $productData['stock'] ?>" maxlength="20" required autofocus>
+                <input id="stock" type="number" name="stock" value="<?= $productData['stock'] ?>" min="-10000" max=10000  required>
             </li>
             <li>
                 <label class="pricelabel" for="price">Prix/100g en euros ou prix unitaire</label>
-                <input id="price" type="number" name="price" value="<?= $productData['price'] ?>" maxlength="20" required>
+                <input id="price" type="number" name="price" value="<?= $productData['price'] ?>" min=1 max=10000  required>
             </li>
         </ol>
     </fieldset>

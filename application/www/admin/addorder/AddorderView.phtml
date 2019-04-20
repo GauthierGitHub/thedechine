@@ -7,7 +7,7 @@
         <ol>
             <li>
                 <label for="customer_id">Nom Prénom</label><br>
-                <select name="customer_id">
+                <select id="customer_id" name="customer_id" autofocus>
                     <?php foreach ($dataCustomers as $customer) : ?>
                         <option value="<?= $customer['id'] ?>"><?= $customer['firstname'] ?> <?= $customer['lastname'] ?></option>
                     <?php endforeach; ?>
@@ -22,7 +22,7 @@
             <?php foreach ($dataProducts as $product) : ?>
                 <li>
                     <input class="checkbox" type="checkbox" name="product[]" value="<?= $product['id'] ?>"> <?= $product['name'] ?><br>
-                    <input class="togglePost" disabled="disabled" type="number" name="product[]" placeholder="Quantité" min="1" max="1000" required autofocus><br>
+                    <input class="togglePost" disabled="disabled" type="number" name="product[]" placeholder="Quantité" min="1" max="1000" required><br>
                 </li>
             <?php endforeach; ?>
         </ol>

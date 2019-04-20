@@ -170,10 +170,6 @@ input[type=number]:invalid {
     text-align: center;
 }
 
-#connexion input {
-    width: 100%;
-}
-
 /*
 * VIEW ADMINS ORDERS
 */
@@ -454,6 +450,7 @@ h1 {
     position: fixed;
     top: 30px;
     width: 100%;
+    height: 60px;
     max-width: 1250px;
     border-bottom: 2px solid transparent;
     transition: border-bottom-color 0.5s ease-out;
@@ -493,6 +490,12 @@ footer ul li {
 
 .link-list {
     padding: 0
+}
+
+@media screen and (max-width: 768px) {
+    footer *{
+        margin: 0 auto;
+    }
 }
 
 /*
@@ -595,6 +598,11 @@ thead tr td {
 .togglePost {
     /*complément pour js*/
     display: none;
+    min-width: 100%;
+}
+
+#clientform {
+    width: 100%;
 }
 
 form.form2 {

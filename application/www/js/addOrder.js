@@ -48,7 +48,7 @@ function effacerChampsFormulaires() {
 
 //affichage du bon client en mode édition
 function rightCustomer (){
-  var rightCustomerId = $('select').attr('value');
+  var rightCustomerId = $('select').attr('class');
   var rightOption = $("option[value|='"+rightCustomerId+"']");
   rightOption.attr("selected","selected");
 }
