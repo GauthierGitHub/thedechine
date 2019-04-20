@@ -7,11 +7,11 @@
         <ol>
             <li>
                 <label for=name>Nom</label>
-                <input id=name name=name type=text placeholder="Nom" maxlength="40" required autofocus>
+                <input id=name name=name type=text placeholder="Nom" maxlength="40" required>
             </li>
             <li>
                 <label for="category">Catégorie</label>
-                <select name="category">
+                <select id="category" name="category">
                     <?php foreach ($category_name as $category) : ?>
                         <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
                     <?php endforeach; ?>
@@ -19,7 +19,7 @@
             </li>
             <li>
                 <label for=description>Description</label>
-                <textarea id=description name=description type=text placeholder="Description" maxlength="160" required autofocus>
+                <textarea id=description name=description placeholder="Description" maxlength="160" required autofocus>
                 </textarea>
             </li>
             <li>
@@ -28,11 +28,11 @@
             </li>
             <li>
                 <label for=stock>Nb en stock</label>
-                <input id=stock name=stock type=number placeholder="Nombre stock" maxlength="20" required autofocus>
+                <input id=stock name=stock type=number placeholder="Nombre stock" min=1 max=100000 required>
             </li>
             <li>
                 <label class="pricelabel" for=price>Prix/100g ou prix unitaire en euros</label>
-                <input id=price name=price type=number placeholder="exemple : 100 " maxlength="20" required>
+                <input id=price name=price type=number placeholder="exemple : 100 " min=1 max=10000 required>
             </li>
         </ol>
     </fieldset>
