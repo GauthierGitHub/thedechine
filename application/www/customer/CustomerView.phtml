@@ -1,6 +1,6 @@
 <section id="connexion" class="col-lg-6 col-md-6 col-sd-12">
 
-    <form class="form2 clientform" action="<?= $requestUrl ?>/customer/connection" method="post">
+    <form id="clientform" class="form2" action="<?= $requestUrl ?>/customer/connection" method="post">
         <fieldset>
             <legend>Identifiez-vous :</legend>
             <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
@@ -11,7 +11,7 @@
                 </li>
                 <li>
                     <label for=pass>Password</label>
-                    <input id=pass name="login[password]" maxlength="160" type=password required autofocus>
+                    <input id=pass name="login[password]" maxlength="160" type=password required>
                 </li>
                 <!-- pas encore mis en place
                 <a class=" action remind" href="<?= $requestUrl ?>/customer/forgotpassword">Mot de passe oublié ?</a>
