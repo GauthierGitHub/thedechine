@@ -1,0 +1,12 @@
+# Si le serveur Apache a le module de ré-écriture d'URL activé
+
+# On suit les liens symboliques 
+# On suit les liens symboliques 
+Options +FollowSymlinks +Indexes
+#On active la réécriture d'URL (URL Rewriting)
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+#ex avec index.php
+RewriteRule ^/thedechine\.html$ /index.php [L]
+
