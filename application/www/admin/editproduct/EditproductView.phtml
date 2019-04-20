@@ -8,16 +8,16 @@
         <legend>Produit</legend>
         <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
         <p class="hidden">
-            <label for="id">id</label><br>
+            <label for="id">id</label>
             <input id="id" type="text" name="id" value="<?= $productData['id'] ?>">
         </p>
         <ol>
             <li>
-                <label for="name">Nom</label><br>
+                <label for="name">Nom</label>
                 <input id="name" type="text" name="name" value="<?= $productData['name'] ?>" maxlength="40">
             </li>
             <li>
-                <label for="category_id">Catégorie :</label><br>
+                <label for="category_id">Catégorie :</label>
                 <select id="category_id" name="category_id">
                     <?php foreach ($categories as $category) : ?>
                         <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
@@ -25,15 +25,15 @@
                 </select>
             </li>
             <li>
-                <label for="description">Description</label><br>
+                <label for="description">Description</label>
                 <input id="description" type="text" name="description" value="<?= $productData['description'] ?>" maxlength="160" required autofocus>
             </li>
             <li>
-                <label for="stock">Nb en stock</label><br>
+                <label for="stock">Nb en stock</label>
                 <input id="stock" type="number" name="stock" value="<?= $productData['stock'] ?>" maxlength="20" required autofocus>
             </li>
             <li>
-                <label class="pricelabel" for="price">Prix/100g en euros ou prix unitaire</label><br>
+                <label class="pricelabel" for="price">Prix/100g en euros ou prix unitaire</label>
                 <input id="price" type="number" name="price" value="<?= $productData['price'] ?>" maxlength="20" required>
             </li>
         </ol>
@@ -44,11 +44,11 @@
 
 </form>
 
-<br>
-<h3>Changer l'image du produit</h3>
-<br>
+
+<h3 class="col-12">Changer l'image du produit</h3>
+
 <p class="col-12">Nom de l'actuelle image : <?= $productData['image'] ?></p>
-<br>
+
 
 <form class="form2" method="POST" action="upload" enctype="multipart/form-data">
     <fieldset>
@@ -56,7 +56,7 @@
         <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
         <ol>
             <li class="hidden">
-                <label for="id">id</label><br>
+                <label for="id">id</label>
                 <input type="text" name="id" value="<?= $productData['id'] ?>">
             </li>
             <!-- On limite le fichier à 10000000 = 10MB-->
@@ -64,7 +64,7 @@
                 <input type="hidden" name="MAX_FILE_SIZE" value="10000000">
             </li>
             <li>
-                <input type="file" name="photoToUpload">
+                <input id="inputfile" type="file" name="photoToUpload">
             </li>
         </ol>
     </fieldset>

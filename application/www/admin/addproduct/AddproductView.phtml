@@ -1,4 +1,4 @@
-<h3>Ajouter un produit</h3>
+<h3 class="col-12">Ajouter un produit</h3>
 
 <form class="form2" action="addproduct" method="post" enctype="multipart/form-data">
     <fieldset>
@@ -10,7 +10,7 @@
                 <input id=name name=name type=text placeholder="Nom" maxlength="40" required autofocus>
             </li>
             <li>
-                <label for="category">Catégorie :</label><br>
+                <label for="category">Catégorie</label>
                 <select name="category">
                     <?php foreach ($category_name as $category) : ?>
                         <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
@@ -19,11 +19,12 @@
             </li>
             <li>
                 <label for=description>Description</label>
-                <input id=description name=description type=text placeholder="Description" maxlength="160" required autofocus>
+                <textarea id=description name=description type=text placeholder="Description" maxlength="160" required autofocus>
+                </textarea>
             </li>
             <li>
                 <input type="hidden" name="MAX_FILE_size" value="10000000">
-                Fichier image limité 10MB: <input type="file" name="photoToUpload">
+                Fichier image limité 10MB<input id="inputfile" type="file" name="photoToUpload">
             </li>
             <li>
                 <label for=stock>Nb en stock</label>
