@@ -7,7 +7,7 @@
     <fieldset>
         <legend>Identité</legend>
         <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
-        <input type="hidden" type="text" name="id" value="<?= $customerData['id'] ?>">
+        <input class="hidden" type="text" name="id" value="<?= $customerData['id'] ?>">
         <ol>
             <li>
                 <label for=lastname>Nom</label>
@@ -15,15 +15,15 @@
             </li>
             <li>
                 <label for=firstname>Prénom</label>
-                <input id=firstname name=firstname type=text value="<?= $customerData['firstname'] ?>" maxlength="40" required autofocus>
+                <input id=firstname name=firstname type=text value="<?= $customerData['firstname'] ?>" maxlength="40" required>
             </li>
             <li>
                 <label for=nickname>Pseudo</label>
-                <input id=nickname name=nickname type=text value="<?= $customerData['nickname'] ?>" maxlength="20" required autofocus>
+                <input id=nickname name=nickname type=text value="<?= $customerData['nickname'] ?>" maxlength="20" required>
             </li>
             <li>
                 <label for=mail>Email</label>
-                <input id=mail name=mail type=mail maxlength="80" value="<?= $customerData['mail'] ?>" required>
+                <input id=mail name=mail type=email maxlength="80" value="<?= $customerData['mail'] ?>" required>
             </li>
         </ol>
     </fieldset>
@@ -32,7 +32,7 @@
         <ol>
             <li>
                 <label for=adress>Adresse</label>
-                <input id=adress name=adress type=text value="<?= $customerData['adress'] ?>" required></textarea>
+                <input id=adress name=adress type=text value="<?= $customerData['adress'] ?>" required>
             </li>
             <li>
                 <label for=cp>CP</label>
@@ -40,7 +40,7 @@
             </li>
             <li>
                 <label for=city>Ville</label>
-                <input id=city name=city type=city value="<?= $customerData['city'] ?>" maxlength="80" required>
+                <input id=city name=city type=text value="<?= $customerData['city'] ?>" maxlength="80" required>
             </li>
         </ol>
     </fieldset>
@@ -56,13 +56,12 @@
 
     <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
     <p class="hidden">
-        <label for="id">id</label><br>
         <input type="text" name="id" value="<?= $customerData['id'] ?>">
     </p>
     <fieldset>
         <ol>
             <li>
-                <label for=password>Mdp</label>
+                <label for=password>Password</label>
                 <input id=password name=password type=password required>
             </li>
         </ol>

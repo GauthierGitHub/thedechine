@@ -1,6 +1,6 @@
 <h3 class="col-12">Inscrivez-vous :</h3>
 
-<form class="form2 formaddcustomer" action="<?= $requestUrl ?>/customer/newcustomer" method="post">
+<form class="form2" action="<?= $requestUrl ?>/customer/newcustomer" method="post">
     <fieldset>
         <legend>Identité</legend>
         <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
@@ -11,11 +11,11 @@
             </li>
             <li>
                 <label for=firstname>Prénom</label>
-                <input id=firstname name=firstname type=text placeholder="Prénom" maxlength="40" required autofocus>
+                <input id=firstname name=firstname type=text placeholder="Prénom" maxlength="40" required>
             </li>
             <li>
                 <label for=nickname>Pseudo</label>
-                <input id=nickname name=nickname type=text placeholder="Pseudo" maxlength="20" required autofocus>
+                <input id=nickname name=nickname type=text placeholder="Pseudo" maxlength="20" required>
             </li>
             <li>
                 <label for=mail>Email</label>
@@ -41,7 +41,7 @@
             </li>
             <li>
                 <label for=city>Ville</label>
-                <input id=city name=city type=city maxlength="80" required>
+                <input id=city name=city type=text maxlength="80" required>
             </li>
         </ol>
     </fieldset>

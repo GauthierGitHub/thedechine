@@ -38,8 +38,8 @@
                 <form class="changeStatus" action="<?= $requestUrl; ?>/admin/listingorders" method="post">
                     <input type="hidden" name="jeton" value="<?= $_SESSION['jeton'] ?>" />
                     <input type="text" class="hidden" name="orderid" value="<?= $curentOrder ?>">
-                    <label for="send">Changer le status de la commande</label><br>
-                    <select class=button name="send" value="0">
+                    <label>Changer le status de la commande</label><br>
+                    <select class=button name="send">
                         <option value="0">en cours</option>
                         <option value="1">livrée</option>
                     </select>
@@ -64,7 +64,6 @@
                         <?php foreach ($orders as $order) : ?>
                             <?php if ($order['id'] == $curentOrder) : ?>
 
-                                <a href="<?= $requestUrl; ?>/admin/editorder?orderid=<?= $curentOrder ?>&jeton=<?= $_SESSION['jeton'] ?>">
                                     <tr>
                                         <td><?= $order['product_name'] ?></td>
                                         <td><?= $order['name'] ?></td>
@@ -72,7 +71,6 @@
                                         <td><?= $order['price'] ?></td>
                                         <td><?= $order['soustotal'] ?> €</td>
                                     </tr>
-                                </a>
 
                             <?php endif; ?>
                         <?php endforeach; ?>
