@@ -24,7 +24,7 @@ class UploadController
             if (isset($_FILES['photoToUpload'])) {
                 /*version locale*/
                 //$dossier = '/home/barbet/Devellopement/3wa/Developpement/projetPersonnel/thedechine/application/www/images/teapic/';
-                $dossier = '/var/www/html/thedechine/application/images/teapic/';
+                $dossier = '/var/www/html/thedechine/application/www/images/teapic/';
                 $fichier = basename($_FILES['photoToUpload']['name']);
                 $taille_maxi = 10000000;
                 $taille = filesize($_FILES['photoToUpload']['tmp_name']);
