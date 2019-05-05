@@ -255,6 +255,9 @@ h1 {
     #banner a h1, img {
         display: block;
     }
+    #navbar img {
+        height: 50px;
+    }
 }
 
 @media screen and (min-width: 768px) {
