@@ -4,7 +4,10 @@
 
 function toggleCart() {
   $('#cart').toggle('slow');
-  $('main').on('click', function() {$('#cart').toggle('slow')});
+  $('main').on('click', function() {
+    $('#cart').toggle('hide');
+    $('main').off('click');
+  });
 }
 
 function stikiesNavs() {
