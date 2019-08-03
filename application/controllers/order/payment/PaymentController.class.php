@@ -27,6 +27,7 @@ class PaymentController
 	public function httpPostMethod(Http $http, array $formFields)
 	{
 		// stripe nécessite l'extension php curl : pour php7 : sudo apt-get install php-curl
+		// stripe protège contre le changement du html
 
 		if (!(isset($formFields['jeton']) && ($formFields['jeton'] == $_SESSION['jeton']))) {
 			die("Jeton de session invalide.");
