@@ -4,6 +4,7 @@
 
 function toggleCart() {
   $('#cart').toggle('slow');
+  $('main').on('click', function() {$('#cart').toggle('slow')});
 }
 
 function stikiesNavs() {
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //bouton d'affichage du panier
   var cartButton = $('.cartButton');
   cartButton.on('click', toggleCart);
+
 });
 
 // Navbar et clientbar sticky (class .sticky dans ideeDeChine.css)

@@ -28,32 +28,32 @@
 
       <?php if (isset($_SESSION['customer_nickname']) && $_SESSION['customer_id'] == 9) : ?>
 
-      <a href="<?= $requestUrl ?>/admin">Bienvenue <?= $_SESSION['customer_nickname'] ?>, cliquez ici pour gérer le site.
-      </a>
+        <a href="<?= $requestUrl ?>/admin">Bienvenue <?= $_SESSION['customer_nickname'] ?>, cliquez ici pour gérer le site.
+        </a>
 
-      <a class="disconnection" href="<?= $requestUrl ?>/customer/disconnection">
-        <i class="fa fa-user-times"></i>&nbsp;déconnexion
-      </a>
+        <a class="disconnection" href="<?= $requestUrl ?>/customer/disconnection">
+          <i class="fa fa-user-times"></i>&nbsp;déconnexion
+        </a>
 
       <?php else : ?>
 
-      <a href="<?= $requestUrl ?>/customer">
+        <a href="<?= $requestUrl ?>/customer">
 
-        <i class="fa fa-user"></i>&nbsp;
+          <i class="fa fa-user"></i>&nbsp;
 
-        <?php if (isset($_SESSION['customer_nickname'])) : ?>
-          <?= $_SESSION['customer_nickname'] ?>
+          <?php if (isset($_SESSION['customer_nickname'])) : ?>
+            <?= $_SESSION['customer_nickname'] ?>
           <?php else : ?>
             <?= 'Connectez-vous!' ?>
           <?php endif; ?>
 
-      </a>
+        </a>
 
-      <?php if (isset($_SESSION['customer_nickname'])) : ?>
+        <?php if (isset($_SESSION['customer_nickname'])) : ?>
 
-      <a class="disconnection" href="<?= $requestUrl ?>/customer/disconnection">
+          <a class="disconnection" href="<?= $requestUrl ?>/customer/disconnection">
             <i class="fa fa-user-times"></i>&nbsp;déconnexion
-      </a>
+          </a>
 
         <?php endif; ?>
 
@@ -70,7 +70,7 @@
 
     <div id="banner" class="row">
       <a href="<?= $requestUrl ?>">
-        <img class="col-sd-12" src="<?= $wwwUrl ?>/images/thecalygraphie2.jpg"  alt="#">
+        <img class="col-sd-12" src="<?= $wwwUrl ?>/images/thecalygraphie2.jpg" alt="#">
         <h1 class="col-sd-12">
           Thés de Chine
         </h1>
@@ -125,14 +125,14 @@
 
       </p>
     <?php
-  endforeach;
-endif;
-?>
+    endforeach;
+  endif;
+  ?>
 
   <!-- Panier -->
   <div id="cart">
     <h4 class="monPanier">Mon panier</h4>
-    
+
     <div id="order">
       <!-- Here orderlist -->
       <ul id="orderlist"></ul>
