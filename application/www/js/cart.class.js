@@ -62,5 +62,5 @@ Cart.prototype = {
         delete this.products_names[id];
         delete this.products_prices[id];
         delete this.img_url[id];
-    }
+    },
 }
